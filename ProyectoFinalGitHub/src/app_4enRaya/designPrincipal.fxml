@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="745.0" prefWidth="1060.0" style="-fx-background-color: #1C00ff00;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app_4enRaya.Controlador">
+   <children>
+      <AnchorPane opacity="0.9" prefHeight="745.0" prefWidth="1060.0" style="-fx-background-color: #021F3F; -fx-background-radius: 40;">
+         <children>
+            <ImageView fitHeight="22.0" fitWidth="13.0" layoutX="180.0" layoutY="394.0" opacity="0.9" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../material/ficha_Roja.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="13.0" fitWidth="13.0" layoutX="1023.0" layoutY="394.0" opacity="0.9" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../material/ficha_Amarilla.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="lblTitulo" fill="WHITE" layoutX="215.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cuatro en Raya" textAlignment="CENTER" wrappingWidth="617.0000061392784">
+               <font>
+                  <Font name="Berlin Sans FB" size="59.0" />
+               </font>
+               <effect>
+                  <DropShadow color="#272886" height="65.14" radius="32.155" spread="0.31" width="65.48" />
+               </effect>
+            </Text>
+            <AnchorPane layoutX="26.0" layoutY="230.0" prefHeight="200.0" prefWidth="160.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="166.0" translateX="-8.0">
+                     <children>
+                        <Text fx:id="lblPuntos1" fill="#fcf9f9" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="148.99999007582664">
+                           <font>
+                              <Font name="Bauhaus 93" size="120.0" />
+                           </font>
+                           <effect>
+                              <DropShadow color="#0d3497" height="127.79" radius="63.3825" spread="0.64" width="127.74" />
+                           </effect>
+                        </Text>
+                        <Text fx:id="lblJugador1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="JUGADOR 1" underline="true">
+                           <font>
+                              <Font name="Berlin Sans FB" size="30.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="859.0" layoutY="230.0" prefHeight="200.0" prefWidth="160.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="166.0">
+                     <children>
+                        <Text fx:id="lblPuntos2" fill="#fcf9f9" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="148.99999007582664">
+                           <font>
+                              <Font name="Bauhaus 93" size="120.0" />
+                           </font>
+                           <effect>
+                              <DropShadow color="#0d3497" height="127.79" radius="63.3825" spread="0.64" width="127.74" />
+                           </effect>
+                        </Text>
+                        <Text fx:id="lblJugador2" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="JUGADOR 2">
+                           <font>
+                              <Font name="Berlin Sans FB" size="30.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <Line endX="-64.0" layoutX="1084.0" layoutY="48.0" rotate="-45.0" startX="-91.0" stroke="WHITE" strokeWidth="2.0" />
+            <Button fx:id="btCerrar" layoutX="984.0" layoutY="31.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="45.0" style="-fx-background-color: #1C00ff00;">
+               <graphic>
+                  <Line endX="-64.0" rotate="45.0" startX="-91.0" stroke="WHITE" strokeWidth="2.0" />
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btMinimizar" alignment="BOTTOM_CENTER" layoutX="939.0" layoutY="30.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="45.0" style="-fx-background-color: #1C00ff00;">
+               <graphic>
+                  <Line endX="-64.0" startX="-91.0" stroke="WHITE" strokeWidth="2.0" />
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Canvas fx:id="panelCanvas" height="522.0" layoutX="217.0" layoutY="125.0" width="617.0" />
+            <ImageView fx:id="ficha_Animacion" fitHeight="73.0" fitWidth="73.0" layoutX="73.0" layoutY="47.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" visible="false" />
+            <ImageView fitHeight="522.0" fitWidth="634.0" layoutX="217.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../material/tablero.png" />
+               </image>
+               <effect>
+                  <DropShadow height="80.3" radius="30.755" width="44.72" />
+               </effect>
+            </ImageView>
+            <HBox layoutX="217.0" layoutY="126.0" prefHeight="91.0" prefWidth="617.0">
+               <children>
+                  <Button fx:id="btColumna_0" mnemonicParsing="false" prefHeight="115.0" prefWidth="93.0" style="-fx-background-color: #1C00ff00;">
+                     <padding>
+                        <Insets right="93.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btColumna_1" mnemonicParsing="false" prefHeight="151.0" prefWidth="88.0" style="-fx-background-color: #1C00ff00;">
+                     <padding>
+                        <Insets right="88.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btColumna_2" mnemonicParsing="false" prefHeight="166.0" prefWidth="85.0" style="-fx-background-color: #1C00ff00;">
+                     <padding>
+                        <Insets right="85.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btColumna_3" mnemonicParsing="false" prefHeight="188.0" prefWidth="84.0" style="-fx-background-color: #1C00ff00;">
+                     <padding>
+                        <Insets right="83.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btColumna_4" mnemonicParsing="false" prefHeight="214.0" prefWidth="88.0" style="-fx-background-color: #1C00ff00;">
+                     <padding>
+                        <Insets right="88.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btColumna_5" mnemonicParsing="false" prefHeight="176.0" prefWidth="85.0" style="-fx-background-color: #1C00ff00;">
+                     <padding>
+                        <Insets right="85.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btColumna_6" mnemonicParsing="false" prefHeight="163.0" prefWidth="96.0" style="-fx-background-color: #1C00ff00;">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </HBox>
+            <Line fx:id="line_Winner" endX="126.0" endY="-83.0" layoutX="575.0" layoutY="339.0" startX="-137.0" startY="182.0" stroke="#befff4" strokeLineCap="ROUND" strokeWidth="7.0" visible="false">
+               <effect>
+                  <DropShadow color="#4db8ff" height="92.53999999999999" radius="44.13249999999999" spread="0.52" width="85.99" />
+               </effect>
+            </Line>
+            <JFXButton fx:id="btMultijugador" alignment="CENTER" buttonType="RAISED" focusTraversable="false" graphicTextGap="0.0" layoutX="403.0" layoutY="664.0" ripplerFill="#2d6cff" style="-fx-background-color: #002855; -fx-background-radius: 30;" text="Multijugador" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Berlin Sans FB" size="36.0" />
+               </font>
+               <effect>
+                  <DropShadow color="#272886" height="65.4" radius="32.22" spread="0.41" width="65.48" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+   <effect>
+      <Glow level="0.35" />
+   </effect>
+</AnchorPane>
