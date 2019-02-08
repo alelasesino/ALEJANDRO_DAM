@@ -76,7 +76,7 @@ public class Inventario {
 					@Override
 					public void run() {*/
 						
-						new CardItem("Sprite");
+						/*new CardItem("Sprite");
 						
 						new CardItem("Zumitos");
 						new CardItem("Sprite");
@@ -105,7 +105,7 @@ public class Inventario {
 						new CardItem("Zumitos");
 						new CardItem("Zumitos");
 						new CardItem("Zumitos");
-						new CardItem("Zumitos");
+						new CardItem("Zumitos");*/
 						
 						ControlVentanaPrincipal.srcControl.item_progressbar.setVisible(false);
 						ControlVentanaPrincipal.srcControl.gridInventario.setVisible(true);

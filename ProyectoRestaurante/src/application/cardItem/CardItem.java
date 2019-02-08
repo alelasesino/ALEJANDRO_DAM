@@ -1,6 +1,8 @@
 package application.cardItem;
 
 import java.io.IOException;
+
+import application.tabs.pedidos.Producto;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
@@ -11,19 +13,23 @@ import javafx.scene.image.Image;
  */
 public class CardItem {
 	
-	private String nombre;
-	private double precio;
+	private Producto producto;
 	private Image img;
 	private Parent tarjeta;
 	
-	public CardItem(String nombre) {
-		
-		this.nombre = nombre.toUpperCase();
+	public CardItem() {
 		
 		try { tarjeta = FXMLLoader.load(getClass().getResource("/fxml/CardItem.fxml")); } catch (IOException e) {}
 		
 		//addCardItem();
-		setValuesCard();
+		//setValuesCard();
+		
+	}
+	
+	public CardItem(Producto producto) {
+		this();
+		
+		this.producto = producto;
 		
 	}
 	
@@ -35,16 +41,8 @@ public class CardItem {
 	
 	private void setValuesCard() {
 		
-		ControlCardItem.srcControl.lblProducto.setText(nombre);
+		//ControlCardItem.srcControl.lblProducto.setText(nombre);
 		
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public double getPrecio() {
-		return precio;
 	}
 
 	public Image getImg() {

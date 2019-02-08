@@ -2,21 +2,38 @@ package application.tabs.pedidos;
 
 public class Producto {
 
+	private String categoria;
 	private String nombre;
-	private int cantidad;
 	private double precio;
+	private String imgName;
 	
-	public Producto(String nombre, int cantidad, double precio) {
+	public Producto(String categoria, String nombre, double precio, String imgName) {
 		
+		this.categoria = categoria;
 		this.nombre = nombre;
-		this.cantidad = cantidad;
 		this.precio = precio;
+		this.imgName = imgName;
 		
 	}
 	
 	public String toString() {
-		return "Nombre: " + nombre + " Cantidad: " + cantidad + " Precio: " + precio;
+		return "Categoria: " + categoria + " Nombre: " + nombre + " " + " Precio:" + precio + " ImgName: " + imgName;
 	}
 
+	public String getCategoria() {
+		return categoria;
+	}
 
+	public String getNombre() {
+		return nombre;
+	}
+
+	public double getPrecio() {
+		return precio;
+	}
+
+	public String getImgName() {
+		return imgName;
+	}
+	
 }

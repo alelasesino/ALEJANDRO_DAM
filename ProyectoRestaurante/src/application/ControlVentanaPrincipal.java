@@ -84,11 +84,11 @@ public class ControlVentanaPrincipal implements Initializable {
 
 		ObservableList<Producto> lista = FXCollections.observableArrayList();
 
-		lista.add(new Producto("LECHE", 5, 6.42));
+		/*lista.add(new Producto("LECHE", 5, 6.42));
 		lista.add(new Producto("COCA COLA", 3, 4.56));
 		lista.add(new Producto("PIPAS", 10, 1.23));
 		lista.add(new Producto("SPRITE", 7, 3.56));
-		lista.add(new Producto("AGUA", 2, 7.12));
+		lista.add(new Producto("AGUA", 2, 7.12));*/
 
 		return lista;
 
