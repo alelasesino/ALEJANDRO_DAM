@@ -1,0 +1,47 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.tab-pane:top *.tab-header-area {
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.416667em 0.166667em 0.0em 0.0em;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+}
+
+.tab-pane {
+}
+
+.tab {
+	-fx-alignment: CENTER;
+    -fx-background-insets: 0 1 0 1,0,0;
+    /*-fx-pref-width: 500.0;*/
+    -fx-pref-width: 678.0;
+    -fx-pref-height: 52.0;
+}
+.tab-pane .tab {
+	-fx-alignment: CENTER;
+    -fx-background-color: #e6e6e6;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: #3c3c3c;
+}
+
+.tab .tab-label { 
+    -fx-alignment: CENTER;
+   /* -fx-text-fill: #828282;*/
+   	-fx-text-fill: #7F7F7F;
+    -fx-font-size: 20px;
+}
+
+.tab-container {
+    -fx-alignment: center;
+}
+
+.tab:selected .tab-label {
+	-fx-pref-width: 500.0; 
+    -fx-alignment: CENTER;
+    -fx-text-fill: #ffffff;
+}
+

@@ -1,0 +1,16 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.background_cardView{
+	
+	/*-fx-background-color:  #DFDFDF;*/
+	-fx-background-color:  #9FFFF6;
+	-fx-background-radius: 20px;
+	-fx-effect: dropshadow(three-pass-box, #000000, 10, 0, 0, 0);
+
+}
+
+.labelNombre{
+	
+	-fx-background-color: rgba(0, 0, 0, 0.7); 
+	
+}

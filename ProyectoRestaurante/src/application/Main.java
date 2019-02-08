@@ -1,6 +1,5 @@
 package application;
 
-import application.cardItem.CardItem;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -16,19 +15,6 @@ public class Main extends Application {
 		try {
 			
 			Parent root = FXMLLoader.load(getClass().getResource("/fxml/VentanaPrincipal.fxml"));
-			
-			CardItem asd =  new CardItem("asd");
-			CardItem aasasd =new CardItem("asd");
-			CardItem assasd =new CardItem("asd");
-			CardItem asasd =new CardItem("asd");
-			CardItem assd =new CardItem("asd");
-			new CardItem("asd");
-			new CardItem("asd");
-			new CardItem("asd");
-			
-			//System.gc();
-			
-			
 			
 			escena = new Scene(root);
 			escena.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());

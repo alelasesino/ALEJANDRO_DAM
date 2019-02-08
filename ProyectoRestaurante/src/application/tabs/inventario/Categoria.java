@@ -3,16 +3,27 @@ package application.tabs.inventario;
 import java.util.ArrayList;
 
 import application.cardItem.CardItem;
+import javafx.scene.image.Image;
 
-class Categoria {
+public class Categoria {
 
 	private String nombre;
-	ArrayList<CardItem> array_cards = new ArrayList<>();
+	private ArrayList<CardItem> arrayCards = new ArrayList<>();
 	
 	public Categoria(String nombre) {
 		// TODO Auto-generated constructor stub
 	}
 	
-	//public void addCard
+	private String[] getItemName() {
+		
+		return null;
+		
+	}
+	
+	private Image[] getItemImage() {
+		
+		return null;
+		
+	}
 
 }
