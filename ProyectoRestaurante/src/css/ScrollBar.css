@@ -1,0 +1,45 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+/*.thumb {  BARRA DEL SCROLL DE DONDE SE ARRASTRA CON EL RATON 
+}
+
+.scroll-bar:vertical .track {  RECORRIDO QUE PUEDE RECORRER LA BARRA 
+}
+
+.increment-button {
+}
+
+.scroll-bar .increment-arrow{
+}
+
+.scroll-bar .decrement-arrow{
+}*/
+
+.bordes {
+	-fx-border-color: transparent;
+	-fx-focus-color: transparent;
+	-fx-faint-focus-color: transparent;
+	
+}
+
+* {
+	
+	-fx-focus-color: transparent;
+	-fx-faint-focus-color: transparent;
+	
+}
+
+.scrollBordes {
+	
+	-fx-border-color: #BFBFBF;
+	
+}
+
+.scroll-bar{
+	
+	-fx-background-color: transparent;
+	-fx-border-color: transparent;
+	-fx-opacity: 0;
+	
+}
+
