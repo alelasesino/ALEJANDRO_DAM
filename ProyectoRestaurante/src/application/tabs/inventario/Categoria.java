@@ -1,15 +1,10 @@
 package application.tabs.inventario;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import application.ConexionDB;
 import application.EnumPHP;
 import application.cardItem.CardItem;
