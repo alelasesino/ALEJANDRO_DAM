@@ -1,5 +1,7 @@
 package application.tabs.inventario;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import org.json.JSONArray;
@@ -13,24 +15,50 @@ import javafx.scene.image.Image;
 
 public class Categoria {
 
-	private String nombre;
-	private static ArrayList<CardItem> arrayCards = new ArrayList<>();
+	private static ArrayList<Producto> arrayProductos;
 	
-	public Categoria(String nombre) {
-		// TODO Auto-generated constructor stub
+	private ArrayList<CardItem> categoryCards = new ArrayList<>();
+	
+	private String categoria;
+	
+	public Categoria(String categoria) {
+		
+		if(arrayProductos == null)
+			try {
+				initArrayCards();
+			} catch (Exception e) {
+				System.err.println("ERROR EN LA CONEXION CON LA BASE DE DATOS");
+			}
+		
+		this.categoria = categoria;
+		
+		fillListProductsCategory();
+		
+	}
+	
+	public void addAllCategoryCards() {
+		
+		for(CardItem c : categoryCards) c.addCardItem();
+		
 	}
 	
 	/**
 	 * Inicializa el arrayList de tarjetas con los datos de los productos de la base de datos
 	 * @throws Exception
 	 */
-	public static void initArrayCards() throws Exception {
+	private static void initArrayCards() throws Exception {
 		
-		ConexionDB conexion = new ConexionDB(new URL(ConexionDB.LOCAL_URL + EnumPHP.GET_CATEGORIAS.getPHP()));
+		arrayProductos = new ArrayList<>();
+		
+		ConexionDB conexion = new ConexionDB(new URL(ConexionDB.LOCAL_URL + EnumPHP.GET_ALL_PRODUCTS.getPHP()));
 		
 		JSONArray json_array = new JSONArray(conexion.getJSON().get("productos").toString());
 		
 		setJSONtoProducto(getArrayObjects(json_array));
+		
+		//for(CardItem c : arrayCards) System.out.print(c.toString());
+		
+		conexion.closeConnection();
 		
 	}
 
@@ -53,27 +81,42 @@ public class Categoria {
 	 * @param Array JSONObject que tiene los atributos de cada producto
 	 * @throws JSONException
 	 */
-	public static void setJSONtoProducto(JSONObject[] jsonObjects) throws Exception {
+	private static void setJSONtoProducto(JSONObject[] jsonObjects) throws Exception {
 		
 		for(JSONObject j : jsonObjects) {
 
-			Producto p = new Producto(j.getString("CATEGORIA"), j.getString("NOMBRE"), j.getDouble("PRECIO"), j.getString("IMAGEN"));
+			Producto p = new Producto(j.getString("CATEGORIA").trim(), j.getString("NOMBRE"), j.getDouble("PRECIO"), j.getString("IMAGEN").trim());
 			
-			arrayCards.add(new CardItem(p));
+			arrayProductos.add(p);
 			
 		}
 		
 	}
 	
-	private String[] getItemName() {
+	private void fillListProductsCategory() {
 		
-		return null;
+		for(Producto p : arrayProductos) {
+			
+			if(categoria.equals(p.getCategoria())) {
+				
+				try {
+					categoryCards.add(new CardItem(p, getImageProduct(p.getImgName())));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			} 
+			
+		}
 		
 	}
 	
-	private Image[] getItemImage() {
+	public Image getImageProduct(String imgName) throws IOException {
 		
-		return null;
+		File f = new File("src/img/" + categoria.toLowerCase() + "/" + imgName);
+		
+		return new Image(f.toURI().toString());
 		
 	}
 

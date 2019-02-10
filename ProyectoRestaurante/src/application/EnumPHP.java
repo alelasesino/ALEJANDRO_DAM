@@ -2,7 +2,7 @@ package application;
 
 public enum EnumPHP {
 
-	GET_CATEGORIAS("getAllCategory.php"), INSERT_PRODUCTO("insertProducto.php");
+	GET_CATEGORIAS("getAllCategory.php"), GET_ALL_PRODUCTS("getAllProducts.php"), INSERT_PRODUCTO("insertProducto.php");
 	
 	private String PHP_File;
 	

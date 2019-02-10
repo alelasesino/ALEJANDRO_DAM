@@ -11,23 +11,31 @@ public class Main extends Application {
 	
 	public static Scene escena;
 	
+	public Categoria c;
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			
 			Parent root = FXMLLoader.load(getClass().getResource("/fxml/VentanaPrincipal.fxml"));
-			
+						
 			new Thread(new Runnable() {
 				
 				@Override
 				public void run() {
 					
-					try {
-						Categoria.initArrayCards();
-					} catch (Exception e) {
+					//try {
+						
+						//Categoria.initArrayCards();
+						
+						c = new Categoria("HELADO");
+						
+						
+						
+					/*} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}
+					}*/
 					
 				}
 			}).start();
@@ -36,6 +44,8 @@ public class Main extends Application {
 			escena.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
 			primaryStage.setScene(escena);
 			primaryStage.show();
+			
+			c.addAllCategoryCards();
 			
 		} catch(Exception e) {
 			e.printStackTrace();

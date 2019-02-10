@@ -1,5 +1,7 @@
 package application.tabs.pedidos;
 
+import java.text.DecimalFormat;
+
 public class Producto {
 
 	private String categoria;
@@ -28,8 +30,8 @@ public class Producto {
 		return nombre;
 	}
 
-	public double getPrecio() {
-		return precio;
+	public String getPrecio() {
+		return new DecimalFormat("##,###.00 €").format(precio);
 	}
 
 	public String getImgName() {

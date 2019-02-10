@@ -1,11 +1,13 @@
 package application.cardItem;
 
 import java.io.IOException;
-
+import application.tabs.inventario.Inventario;
 import application.tabs.pedidos.Producto;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  * @author Alejandro Pérez Álvarez
@@ -13,44 +15,58 @@ import javafx.scene.image.Image;
  */
 public class CardItem {
 	
+    private Label lblPrecio;
+    private Label lblProducto;
+    private ImageView imgProducto;
+	
 	private Producto producto;
 	private Image img;
 	private Parent tarjeta;
-	
-	public CardItem() {
-		
-		try { tarjeta = FXMLLoader.load(getClass().getResource("/fxml/CardItem.fxml")); } catch (IOException e) {}
-		
-		//addCardItem();
-		//setValuesCard();
-		
-	}
-	
-	public CardItem(Producto producto) {
-		this();
-		
+
+	public CardItem(Producto producto, Image img) {
+
 		this.producto = producto;
+		this.img = img;
+		
+		try {tarjeta = FXMLLoader.load(getClass().getResource("/fxml/CardItem.fxml")); } catch (IOException e) {}
+		
+		lblPrecio = ControlCardItem.srcControl.lblPrecio;
+		lblProducto = ControlCardItem.srcControl.lblProducto;
+		imgProducto = ControlCardItem.srcControl.imgProducto;
 		
 	}
 	
-	/*private void addCardItem(){
-			
+	public void addCardItem(){
+	  
 		Inventario.addCard(this);
+		setValuesCard();
+	 
+	}
+	 
 
-	}*/
-	
-	private void setValuesCard() {
-		
-		//ControlCardItem.srcControl.lblProducto.setText(nombre);
-		
+	public String toString() {
+		return "CATEGORIA: " + producto.getCategoria() + " NOMBRE: " + producto.getNombre() + " PRECIO: "
+				+ producto.getPrecio() + " IMAGEN: " + producto.getImgName();
 	}
 
+	public void setValuesCard() {
+		
+		lblPrecio.setText(producto.getPrecio() + " €");
+		lblProducto.setText(producto.getNombre());
+		imgProducto.setImage(img);
+
+	}
+
+	public Producto getProducto() {
+		return producto;
+	}
+	
 	public Image getImg() {
 		return img;
 	}
-	
+
 	public Parent getTarjeta() {
 		return tarjeta;
 	}
-	
+
 }

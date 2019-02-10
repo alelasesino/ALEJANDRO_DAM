@@ -61,7 +61,7 @@ public class Inventario {
 	
 	public static void eventTab() {
 		
-		new Thread(new Runnable() {
+		/*new Thread(new Runnable() {
 			
 			@Override
 			public void run() {
@@ -108,13 +108,13 @@ public class Inventario {
 						new CardItem("Zumitos");*/
 						
 						ControlVentanaPrincipal.srcControl.item_progressbar.setVisible(false);
-						ControlVentanaPrincipal.srcControl.gridInventario.setVisible(true);
+						//ControlVentanaPrincipal.srcControl.gridInventario.setVisible(true);
 						
 					/*}
-				});*/
+				});
 				
 			}
-		}).start();
+		}).start();*/
 		
 	}
 	

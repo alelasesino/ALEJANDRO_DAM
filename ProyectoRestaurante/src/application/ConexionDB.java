@@ -91,4 +91,10 @@ public class ConexionDB {
 		
 	}
 	
+	public void closeConnection() {
+		
+		if(conexion != null) conexion.disconnect();
+		
+	}
+	
 }
