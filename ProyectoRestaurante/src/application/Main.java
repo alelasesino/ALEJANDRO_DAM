@@ -23,20 +23,9 @@ public class Main extends Application {
 				
 				@Override
 				public void run() {
-					
-					//try {
-						
-						//Categoria.initArrayCards();
-						
-						c = new Categoria("HELADO");
-						
-						
-						
-					/*} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}*/
-					
+
+						c = new Categoria("comida");
+	
 				}
 			}).start();
 			

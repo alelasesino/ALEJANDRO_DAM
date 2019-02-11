@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXTabPane;
+
+import application.tabs.inventario.CategoryEvent;
 import application.tabs.inventario.Inventario;
 import application.tabs.pedidos.Producto;
 import javafx.collections.FXCollections;
@@ -34,14 +36,21 @@ public class ControlVentanaPrincipal implements Initializable {
     @FXML
     public JFXProgressBar item_progressbar;
     
-    @FXML
-    private JFXButton cat_Refrescos;
 
     @FXML
     public ScrollPane Scroll_Inventario;
     
     @FXML
     public AnchorPane Pane_scroll_Inventario;
+    
+    @FXML
+    private JFXButton cat_Comidas;
+    
+    @FXML
+    private JFXButton cat_Refrescos;
+    
+    @FXML
+    private JFXButton cat_Helados;
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -57,8 +66,9 @@ public class ControlVentanaPrincipal implements Initializable {
 			
 		});
 		
-		cat_Refrescos.setOnMouseClicked(event -> Inventario.clearInventario());
-		
+		cat_Comidas.setOnMouseClicked(new CategoryEvent("comida"));
+		cat_Refrescos.setOnMouseClicked(new CategoryEvent("refresco"));
+		cat_Helados.setOnMouseClicked(new CategoryEvent("helado"));
 		//cargarItems = new CargarItems();
 		
 		//item_progressbar.progressProperty().bind(cargarItems.progressProperty());

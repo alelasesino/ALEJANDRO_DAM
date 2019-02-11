@@ -104,12 +104,20 @@
                                              <children>
                                                 <JFXClippedPane styleClass="cat_Refrescos" stylesheets="@../css/VentanaPrincipal.css">
                                                    <children>
-                                                      <ImageView fitHeight="123.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true">
+                                                      <ImageView fitHeight="123.0" fitWidth="123.0" pickOnBounds="true" smooth="false">
                                                          <image>
-                                                            <Image url="@../img/categorias/refrescos.png" />
+                                                            <Image url="@../img/categorias/comidas.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <JFXButton fx:id="cat_Refrescos" prefHeight="123.0" prefWidth="123.0" text=" " />
+                                                      <Label fx:id="lblProducto" alignment="CENTER" contentDisplay="BOTTOM" ellipsisString="" focusTraversable="false" prefHeight="28.0" prefWidth="123.0" styleClass="labelNombre" stylesheets="@../css/CardItem.css" text="COMIDAS" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+                                                         <font>
+                                                            <Font name="System Bold" size="16.0" />
+                                                         </font>
+                                                         <padding>
+                                                            <Insets bottom="3.0" top="3.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <JFXButton fx:id="cat_Comidas" prefHeight="123.0" prefWidth="123.0" text=" " />
                                                    </children>
                                                 </JFXClippedPane>
                                              </children>
@@ -121,12 +129,20 @@
                                              <children>
                                                 <JFXClippedPane styleClass="cat_Refrescos" stylesheets="@../css/VentanaPrincipal.css">
                                                    <children>
-                                                      <ImageView fitHeight="123.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true">
+                                                      <ImageView fitHeight="123.0" fitWidth="123.0" pickOnBounds="true">
                                                          <image>
                                                             <Image url="@../img/categorias/refrescos.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <JFXButton fx:id="cat_Refrescos1" prefHeight="123.0" prefWidth="123.0" text=" " />
+                                                      <Label fx:id="lblProducto1" alignment="CENTER" contentDisplay="BOTTOM" ellipsisString="" focusTraversable="false" prefHeight="28.0" prefWidth="123.0" styleClass="labelNombre" stylesheets="@../css/CardItem.css" text="REFRESCOS" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+                                                         <font>
+                                                            <Font name="System Bold" size="16.0" />
+                                                         </font>
+                                                         <padding>
+                                                            <Insets bottom="3.0" top="3.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <JFXButton fx:id="cat_Refrescos" prefHeight="123.0" prefWidth="123.0" text=" " />
                                                    </children>
                                                 </JFXClippedPane>
                                              </children>
@@ -141,21 +157,29 @@
                                              <children>
                                                 <JFXClippedPane styleClass="cat_Refrescos" stylesheets="@../css/VentanaPrincipal.css">
                                                    <children>
-                                                      <ImageView fitHeight="123.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true">
+                                                      <ImageView fitHeight="123.0" fitWidth="123.0" pickOnBounds="true">
                                                          <image>
-                                                            <Image url="@../img/categorias/refrescos.png" />
+                                                            <Image url="@../img/categorias/helados.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <JFXButton fx:id="cat_Refrescos2" prefHeight="123.0" prefWidth="123.0" text=" " />
+                                                      <Label fx:id="lblProducto11" alignment="CENTER" contentDisplay="BOTTOM" ellipsisString="" focusTraversable="false" prefHeight="28.0" prefWidth="123.0" styleClass="labelNombre" stylesheets="@../css/CardItem.css" text="HELADOS" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+                                                         <font>
+                                                            <Font name="System Bold" size="16.0" />
+                                                         </font>
+                                                         <padding>
+                                                            <Insets bottom="3.0" top="3.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <JFXButton fx:id="cat_Helados" prefHeight="123.0" prefWidth="123.0" text=" " />
                                                    </children>
                                                 </JFXClippedPane>
                                              </children>
                                           </AnchorPane>
-                                          <AnchorPane prefHeight="123.0" prefWidth="145.0" style="-fx-background-color: #DFDFDF; -fx-background-radius: 20;" styleClass="cat_Helados" stylesheets="@../css/VentanaPrincipal.css">
+                                          <AnchorPane prefHeight="123.0" prefWidth="145.0" style="-fx-background-color: #DFDFDF; -fx-background-radius: 20;" styleClass="cat_Helados" stylesheets="@../css/VentanaPrincipal.css" visible="false">
                                              <children>
                                                 <JFXClippedPane styleClass="cat_Refrescos" stylesheets="@../css/VentanaPrincipal.css">
                                                    <children>
-                                                      <ImageView fitHeight="123.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true">
+                                                      <ImageView fitHeight="123.0" fitWidth="123.0" pickOnBounds="true">
                                                          <image>
                                                             <Image url="@../img/categorias/refrescos.png" />
                                                          </image>
@@ -168,11 +192,11 @@
                                                 <DropShadow />
                                              </effect>
                                           </AnchorPane>
-                                          <AnchorPane prefHeight="123.0" prefWidth="145.0" style="-fx-background-color: #DFDFDF; -fx-background-radius: 20;">
+                                          <AnchorPane prefHeight="123.0" prefWidth="145.0" style="-fx-background-color: #DFDFDF; -fx-background-radius: 20;" visible="false">
                                              <children>
                                                 <JFXClippedPane styleClass="cat_Refrescos" stylesheets="@../css/VentanaPrincipal.css">
                                                    <children>
-                                                      <ImageView fitHeight="123.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true">
+                                                      <ImageView fitHeight="123.0" fitWidth="123.0" pickOnBounds="true">
                                                          <image>
                                                             <Image url="@../img/categorias/refrescos.png" />
                                                          </image>

@@ -52,7 +52,7 @@ public class CardItem {
 	public void setValuesCard() {
 		
 		lblPrecio.setText(producto.getPrecio() + " €");
-		lblProducto.setText(producto.getNombre());
+		if(!producto.getCategoria().equalsIgnoreCase("refresco")) lblProducto.setText(producto.getNombre()); else lblProducto.setVisible(false);
 		imgProducto.setImage(img);
 
 	}

@@ -30,7 +30,7 @@ public class Categoria {
 				System.err.println("ERROR EN LA CONEXION CON LA BASE DE DATOS");
 			}
 		
-		this.categoria = categoria;
+		this.categoria = categoria.toUpperCase();
 		
 		fillListProductsCategory();
 		
