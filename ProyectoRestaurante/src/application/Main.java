@@ -15,6 +15,7 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) {
+		
 		try {
 			
 			Parent root = FXMLLoader.load(getClass().getResource("/fxml/VentanaPrincipal.fxml"));
@@ -32,6 +33,8 @@ public class Main extends Application {
 			escena = new Scene(root);
 			escena.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
 			primaryStage.setScene(escena);
+			//primaryStage.setMaximized(true);
+			primaryStage.setResizable(false);
 			primaryStage.show();
 			
 			c.addAllCategoryCards();
@@ -39,9 +42,11 @@ public class Main extends Application {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
 	
 	public static void main(String[] args) {
 		launch(args);
 	}
+	
 }

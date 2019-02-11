@@ -1,5 +1,7 @@
 package application.tabs.inventario;
 
+import application.ControlVentanaPrincipal;
+import application.cardItem.ControlCardItem;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 
@@ -7,7 +9,7 @@ public class CategoryEvent implements EventHandler<Event>{
 
 	private String id;
 	
-	private static String state = "";
+	private static String state = "comida";
 	
 	public CategoryEvent(String id) {
 		this.id = id;
@@ -24,8 +26,12 @@ public class CategoryEvent implements EventHandler<Event>{
 			
 			c.addAllCategoryCards();
 			
+			ControlCardItem.setVisibleAll(false);			
+			
 		}
-			state = id;
+		
+		state = id;
+		ControlVentanaPrincipal.srcControl.lblCategoria.setText(state.toUpperCase() + "S");
 		
 	}
 

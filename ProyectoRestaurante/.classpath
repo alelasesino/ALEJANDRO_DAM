@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="img/categorias/|img/comida/|img/refresco/|img/helado/|img/comida/|img/refresco/|img/helado/|img/categorias/|img/|img/categorias/|img/" kind="src" path="src"/>
+	<classpathentry excluding="img/categorias/|img/comida/|img/refresco/|img/helado/|img/comida/|img/refresco/|img/helado/|img/categorias/|img/|img/categorias/|img/|img/" kind="src" path="src"/>
 	<classpathentry kind="src" path="src/img"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_191"/>
 	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/RestaurantLibrary"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/RestaurantLibraries"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -15,8 +15,11 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.CacheHint;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
@@ -35,23 +38,25 @@ public class ControlVentanaPrincipal implements Initializable {
     
     @FXML
     public JFXProgressBar item_progressbar;
-    
 
     @FXML
     public ScrollPane Scroll_Inventario;
     
     @FXML
-    public AnchorPane Pane_scroll_Inventario;
+    public AnchorPane Pane_scroll_Inventario, panelProducto;
     
     @FXML
-    private JFXButton cat_Comidas;
+    private JFXButton cat_Comidas, cat_Refrescos, cat_Helados;
     
     @FXML
-    private JFXButton cat_Refrescos;
+    public Label lblCategoria, lblSeleccion;
     
     @FXML
-    private JFXButton cat_Helados;
+    public ImageView imgProducto;
     
+    @FXML
+    public TextField textNombre, textPrecio;
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
