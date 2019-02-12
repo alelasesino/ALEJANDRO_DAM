@@ -17,12 +17,6 @@
       <AnchorPane prefHeight="125.0" prefWidth="110.0">
          <children>
             <ImageView fx:id="imgProducto" fitHeight="125.0" fitWidth="114.0" layoutX="2.0" layoutY="2.0" nodeOrientation="INHERIT" pickOnBounds="true" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c1ff8ed6" height="17.0" layoutX="72.0" layoutY="3.0" stroke="#a1a1a1" strokeType="INSIDE" width="43.0">
-               <effect>
-                  <BoxBlur height="2.0" iterations="0" width="7.0" />
-               </effect>
-            </Rectangle>
-            <Label fx:id="lblPrecio" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="73.0" layoutY="3.0" prefHeight="17.0" prefWidth="41.0" text="3,96 €" textAlignment="CENTER" />
             <Label fx:id="lblProducto" alignment="CENTER" contentDisplay="BOTTOM" ellipsisString="" focusTraversable="false" layoutX="2.0" layoutY="85.0" prefWidth="114.0" styleClass="labelNombre" stylesheets="@../css/CardItem.css" text="COCA COLA" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
                <font>
                   <Font name="System Bold" size="11.0" />
@@ -32,6 +26,16 @@
                </padding>
             </Label>
             <JFXButton fx:id="btProducto" prefHeight="125.0" prefWidth="116.0" text=" " />
+            <AnchorPane fx:id="panePrecio" layoutX="73.0" layoutY="2.0" prefHeight="17.0" prefWidth="43.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c1ff8ed6" height="17.0" stroke="#a1a1a1" strokeType="INSIDE" width="43.0">
+                     <effect>
+                        <BoxBlur height="2.0" iterations="0" width="7.0" />
+                     </effect>
+                  </Rectangle>
+                  <Label fx:id="lblPrecio" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" prefHeight="17.0" prefWidth="41.0" text="3,96 €" textAlignment="CENTER" />
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>

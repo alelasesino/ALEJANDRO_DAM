@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 
 public class ControlCardItem implements Initializable, EventHandler<Event>{
 
@@ -24,6 +25,9 @@ public class ControlCardItem implements Initializable, EventHandler<Event>{
     
     @FXML
     private JFXButton btProducto;
+    
+    @FXML
+    public AnchorPane panePrecio;
     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -53,6 +57,8 @@ public class ControlCardItem implements Initializable, EventHandler<Event>{
 		ControlVentanaPrincipal.srcControl.lblCategoria.setVisible(visible);
 		ControlVentanaPrincipal.srcControl.textNombre.setVisible(visible);
 		ControlVentanaPrincipal.srcControl.textPrecio.setVisible(visible);
+		ControlVentanaPrincipal.srcControl.btAdd.setVisible(visible);
+		ControlVentanaPrincipal.srcControl.btEliminar.setVisible(visible);
 		
 	}
 	

@@ -294,6 +294,16 @@
                                     <DropShadow />
                                  </effect>
                               </Label>
+                              <JFXButton fx:id="btAdd" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="454.0" layoutY="34.0" prefHeight="29.0" prefWidth="112.0" style="-fx-background-color: #67FF5B; -fx-background-radius: 20;" text="ACTUALIZAR" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" visible="false">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton fx:id="btEliminar" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="454.0" layoutY="77.0" prefHeight="29.0" prefWidth="112.0" style="-fx-background-color: #FF5454; -fx-background-radius: 20;" text="ELIMINAR" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" visible="false">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </JFXButton>
                            </children>
                         </AnchorPane>
                      </children>

@@ -31,7 +31,7 @@ public class Producto {
 	}
 
 	public String getPrecio() {
-		return new DecimalFormat("##,###.00 €").format(precio);
+		return new DecimalFormat("##,##0.00 €").format(precio);
 	}
 
 	public String getImgName() {

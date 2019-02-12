@@ -8,6 +8,7 @@ import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXTabPane;
 
 import application.tabs.inventario.CategoryEvent;
+import application.tabs.inventario.ImageControl;
 import application.tabs.inventario.Inventario;
 import application.tabs.pedidos.Producto;
 import javafx.collections.FXCollections;
@@ -22,6 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.FileChooser;
 
 public class ControlVentanaPrincipal implements Initializable {
 
@@ -46,7 +48,7 @@ public class ControlVentanaPrincipal implements Initializable {
     public AnchorPane Pane_scroll_Inventario, panelProducto;
     
     @FXML
-    private JFXButton cat_Comidas, cat_Refrescos, cat_Helados;
+    public JFXButton cat_Comidas, cat_Refrescos, cat_Helados, btAdd, btEliminar;
     
     @FXML
     public Label lblCategoria, lblSeleccion;
@@ -74,6 +76,9 @@ public class ControlVentanaPrincipal implements Initializable {
 		cat_Comidas.setOnMouseClicked(new CategoryEvent("comida"));
 		cat_Refrescos.setOnMouseClicked(new CategoryEvent("refresco"));
 		cat_Helados.setOnMouseClicked(new CategoryEvent("helado"));
+		
+		imgProducto.setOnMouseClicked(event-> new ImageControl());
+		
 		//cargarItems = new CargarItems();
 		
 		//item_progressbar.progressProperty().bind(cargarItems.progressProperty());

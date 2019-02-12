@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 public class Main extends Application {
 	
 	public static Scene escena;
+	public static Stage primaryStage;
 	
 	public Categoria c;
 	
@@ -37,12 +38,18 @@ public class Main extends Application {
 			primaryStage.setResizable(false);
 			primaryStage.show();
 			
+			setPrimaryStage(primaryStage);
+			
 			c.addAllCategoryCards();
 			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	private static void setPrimaryStage(Stage s) {
+		Main.primaryStage = s;
 	}
 	
 	public static void main(String[] args) {

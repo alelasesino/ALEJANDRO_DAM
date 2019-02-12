@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * @author Alejandro Pérez Álvarez
@@ -16,6 +17,7 @@ import javafx.scene.image.ImageView;
 public class CardItem {
 	
     private Label lblPrecio;
+    private AnchorPane panePrecio;
     private Label lblProducto;
     private ImageView imgProducto;
 	
@@ -31,6 +33,7 @@ public class CardItem {
 		try {tarjeta = FXMLLoader.load(getClass().getResource("/fxml/CardItem.fxml")); } catch (IOException e) {}
 		
 		lblPrecio = ControlCardItem.srcControl.lblPrecio;
+		panePrecio = ControlCardItem.srcControl.panePrecio;
 		lblProducto = ControlCardItem.srcControl.lblProducto;
 		imgProducto = ControlCardItem.srcControl.imgProducto;
 		
@@ -40,6 +43,7 @@ public class CardItem {
 	  
 		Inventario.addCard(this);
 		setValuesCard();
+		addCardItemVisible();
 	 
 	}
 	 
@@ -56,6 +60,22 @@ public class CardItem {
 		lblProducto.setVisible(!producto.getCategoria().equalsIgnoreCase("refresco"));
 		imgProducto.setImage(img);
 
+	}
+
+	private void addCardItemVisible() {
+		
+		if(isAddCard()){
+			
+			lblProducto.setVisible(false);
+			lblPrecio.setVisible(false);
+			panePrecio.setVisible(false);
+			
+		}
+		
+	}
+	
+	private boolean isAddCard() {
+		return lblProducto.getText().equals("NUEVO");
 	}
 
 	public Producto getProducto() {
