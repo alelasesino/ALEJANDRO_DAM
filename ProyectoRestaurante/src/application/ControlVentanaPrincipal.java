@@ -1,12 +1,11 @@
 package application;
 
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXTabPane;
-
 import application.tabs.inventario.CategoryEvent;
 import application.tabs.inventario.ImageControl;
 import application.tabs.inventario.Inventario;
@@ -23,7 +22,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.stage.FileChooser;
 
 public class ControlVentanaPrincipal implements Initializable {
 
@@ -77,7 +75,22 @@ public class ControlVentanaPrincipal implements Initializable {
 		cat_Refrescos.setOnMouseClicked(new CategoryEvent("refresco"));
 		cat_Helados.setOnMouseClicked(new CategoryEvent("helado"));
 		
-		imgProducto.setOnMouseClicked(event-> new ImageControl());
+		imgProducto.setOnMouseClicked(event-> {
+			
+			EnumCategory c = Enum.valueOf(EnumCategory.class, lblCategoria.getText().substring(0, lblCategoria.getText().length()-1));	
+			ImageControl imageControl = new ImageControl(c);
+			
+			try {
+				
+				imgProducto.setImage(imageControl.getImagen());
+				
+			}catch(FileNotFoundException e) {
+				
+				System.err.println("IMAGEN NO ENCONTRADA");
+				
+			}
+			
+		});
 		
 		//cargarItems = new CargarItems();
 		

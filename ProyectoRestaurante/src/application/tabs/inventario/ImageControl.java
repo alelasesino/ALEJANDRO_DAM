@@ -1,11 +1,14 @@
 package application.tabs.inventario;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
-
+import java.io.FileOutputStream;
+import application.EnumCategory;
 import application.Main;
+import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
@@ -19,16 +22,22 @@ import javafx.stage.FileChooser.ExtensionFilter;
 public class ImageControl {
 	
 	private FileChooser fileChooser = new FileChooser();
+	private File file;
+	private String categoria;
 	
-	public ImageControl() {
-	
+	public ImageControl(EnumCategory categoria) {
+		
+		this.categoria = categoria.name();
+		
 		addFilters();
 		
-		try {
+		file = getFile();
+		
+		/*try {
 			copyImgToSource();
 		} catch (Exception e) {
-			System.err.println("ARCHIVO NO ENCONTRADO");
-		}
+			System.err.println("NO SE PUDO COPIAR LA IMAGEN");
+		}*/
 		
 	}
 	
@@ -39,41 +48,65 @@ public class ImageControl {
 		
 	}
 	
-	private void copyImgToSource() throws Exception {
-		
-		File file = getFile();
-		
-		
+	public void copyImgToSource() throws Exception {
 		
 		if(file != null) {
 			
-			FileInputStream input =  new FileInputStream(file.getAbsoluteFile());
-			
-			System.out.println((int) input.getChannel().size());
-			int[] img = new int[(int) input.getChannel().size()];
-			
-			int i = 0;
-			while(input.read() != -1) {
-				
-				img[i] = input.read();
-				//System.out.println(img[i]);
-				
-				//System.out.println();
-				
-			}
-			
-			for(int j = 0; j<img.length; j++) {
-				System.out.println(img[j]);
-			}
-			
+			writeBytesFiles(getBytesFiles());
 			
 		}
-		
 		
 	}
 	
 	private File getFile() {
 		return fileChooser.showOpenDialog(Main.primaryStage);
+	}
+
+	private int[] getBytesFiles() throws Exception {
+		
+		FileInputStream input = new FileInputStream(file);
+		
+		BufferedInputStream buffer = new BufferedInputStream(input);
+		
+		int readByte;
+		
+		int[] fileByte = new int[(int) input.getChannel().size()];
+		
+		int i = 0;
+		do{
+			
+			readByte = buffer.read();
+			if(readByte != -1) fileByte[i++] = readByte;
+			
+		} while(readByte != -1);
+	
+		buffer.close();
+		input.close();
+		
+		return fileByte;
+		
+	}
+	
+	private void writeBytesFiles(int[] bytes) throws Exception{
+		
+		FileOutputStream out = new FileOutputStream("src/img/" + categoria.toLowerCase() + "/" + file.getName());
+		
+		BufferedOutputStream buffer = new BufferedOutputStream(out);
+		
+		for(int a : bytes) buffer.write(a);
+		
+		buffer.close();
+		out.close();
+		
+	}
+	
+	public Image getImagen() throws FileNotFoundException {
+		
+		if(file == null) return new Image("noImage.png");
+		
+		FileInputStream input = new FileInputStream(file);
+		
+		return new Image(input);
 		
 	}
 

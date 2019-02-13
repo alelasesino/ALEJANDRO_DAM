@@ -102,7 +102,6 @@ public class Categoria {
 				try {
 					categoryCards.add(new CardItem(p, getImageProduct(p.getImgName(), categoria)));
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
@@ -113,7 +112,6 @@ public class Categoria {
 		try {
 			categoryCards.add(new CardItem(new Producto("NUEVO", "NUEVO", 0, "addItem.png"), getImageProduct("addItem.png", "")));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
