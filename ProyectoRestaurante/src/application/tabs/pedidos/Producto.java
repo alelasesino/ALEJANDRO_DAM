@@ -1,6 +1,12 @@
 package application.tabs.pedidos;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.DecimalFormat;
+
+import application.ConexionDB;
+import application.EnumPHP;
 
 public class Producto {
 
@@ -36,6 +42,12 @@ public class Producto {
 
 	public String getImgName() {
 		return imgName;
+	}
+	
+	public static void insertProductoDB(Producto producto) throws Exception {
+		
+		ConexionDB conexion = new ConexionDB(new URL(ConexionDB.LOCAL_URL + EnumPHP.INSERT_PRODUCTO.getPHP()));
+		
 	}
 	
 }

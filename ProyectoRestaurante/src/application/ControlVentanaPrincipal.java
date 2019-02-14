@@ -99,7 +99,7 @@ public class ControlVentanaPrincipal implements Initializable {
 		/*TableColumn<Producto, String> columNombre = new TableColumn<Producto, String>("nombre");
 		columNombre.setMinWidth(100);
 		columNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-
+		
 		TableColumn<Producto, Integer> columCantidad = new TableColumn<>("cantidad");
 		columCantidad.setMinWidth(100);
 		columCantidad.setCellValueFactory(new PropertyValueFactory<>("cantidad"));

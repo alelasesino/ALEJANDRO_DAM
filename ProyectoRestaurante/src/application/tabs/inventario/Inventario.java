@@ -13,7 +13,7 @@ import javafx.scene.layout.RowConstraints;
  */
 public class Inventario {
 	
-	private static int numColumnas = 1; //TODO CAMBIAR INICIALIZACION A 0
+	private static int numColumnas = 1;
 	private static final int MAX_WIDTH_COLUMN = 110;
 	private static final int MAX_HEIGHT_COLUMN = 125;
 	
