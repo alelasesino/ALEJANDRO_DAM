@@ -273,11 +273,13 @@
                                  </font>
                                  <padding>
                                     <Insets left="16.0" right="16.0" />
-                                 </padding></TextField>
+                                 </padding>
+                              </TextField>
                               <TextField fx:id="textPrecio" alignment="CENTER" layoutX="202.0" layoutY="96.0" minHeight="25.0" minWidth="92.0" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: #F3F3EB; -fx-background-radius: 50;" text="16,88 €" visible="false">
                                  <font>
                                     <Font size="13.0" />
-                                 </font></TextField>
+                                 </font>
+                              </TextField>
                               <AnchorPane fx:id="panelProducto" layoutX="65.0" layoutY="6.0" prefHeight="125.0" prefWidth="110.0" style="-fx-border-color: #BFBFBF;" visible="false">
                                  <children>
                                     <ImageView fx:id="imgProducto" fitHeight="120.0" fitWidth="114.0" layoutX="2.0" layoutY="2.0" nodeOrientation="INHERIT" pickOnBounds="true" />
@@ -294,16 +296,20 @@
                                     <DropShadow />
                                  </effect>
                               </Label>
-                              <JFXButton fx:id="btAdd" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="454.0" layoutY="34.0" prefHeight="29.0" prefWidth="112.0" style="-fx-background-color: #67FF5B; -fx-background-radius: 20;" text="ACTUALIZAR" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" visible="false">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </JFXButton>
-                              <JFXButton fx:id="btEliminar" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="454.0" layoutY="77.0" prefHeight="29.0" prefWidth="112.0" style="-fx-background-color: #FF5454; -fx-background-radius: 20;" text="ELIMINAR" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" visible="false">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </JFXButton>
+                              <VBox fx:id="btContainer" alignment="CENTER" layoutX="467.0" layoutY="42.0" prefHeight="41.0" prefWidth="100.0" spacing="10.0">
+                                 <children>
+                                    <JFXButton fx:id="btAdd" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" prefHeight="29.0" prefWidth="112.0" style="-fx-background-color: #67FF5B; -fx-background-radius: 20;" text="ACTUALIZAR" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" visible="false">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <JFXButton fx:id="btEliminar" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" prefHeight="29.0" prefWidth="112.0" style="-fx-background-color: #FF5454; -fx-background-radius: 20;" text="ELIMINAR" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" visible="false">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </JFXButton>
+                                 </children>
+                              </VBox>
                            </children>
                         </AnchorPane>
                      </children>

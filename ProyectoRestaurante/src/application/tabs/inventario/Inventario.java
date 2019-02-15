@@ -60,61 +60,8 @@ public class Inventario {
 	}
 	
 	public static void eventTab() {
-		
-		/*new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				
-				ControlVentanaPrincipal.srcControl.item_progressbar.setVisible(true);
-				ControlVentanaPrincipal.srcControl.gridInventario.setVisible(false);
-				
-				try { Thread.sleep(700); } catch (InterruptedException e) {}
-				
-				/*Platform.runLater(new Runnable() {
-					
-					@Override
-					public void run() {*/
 						
-						/*new CardItem("Sprite");
-						
-						new CardItem("Zumitos");
-						new CardItem("Sprite");
-						
-						new CardItem("Zumitos");
-						new CardItem("Sprite");
-						
-						new CardItem("Zumitos");
-						new CardItem("Sprite");
-						
-						new CardItem("Zumitos");
-						new CardItem("Sprite");
-						
-						new CardItem("Zumitos");
-						new CardItem("Sprite");
-						
-						new CardItem("Zumitos");
-						new CardItem("Sprite");
-						
-						new CardItem("Zumitos");
-						new CardItem("Sprite");
-						
-						new CardItem("REFRESCOS");
-						new CardItem("TORTILLA PATATAS");
-						new CardItem("Zumitos");
-						new CardItem("Zumitos");
-						new CardItem("Zumitos");
-						new CardItem("Zumitos");
-						new CardItem("Zumitos");*/
-						
-						ControlVentanaPrincipal.srcControl.item_progressbar.setVisible(false);
-						//ControlVentanaPrincipal.srcControl.gridInventario.setVisible(true);
-						
-					/*}
-				});
-				
-			}
-		}).start();*/
+		ControlVentanaPrincipal.srcControl.item_progressbar.setVisible(false);
 		
 	}
 	
@@ -134,6 +81,7 @@ public class Inventario {
 		for(CardItem c : cards) addCard(c);
 		
 	}
+	
 }
 
 

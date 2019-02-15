@@ -1,7 +1,5 @@
 package application.tabs.pedidos;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DecimalFormat;
 
@@ -10,13 +8,15 @@ import application.EnumPHP;
 
 public class Producto {
 
+	private int idProducto;
 	private String categoria;
 	private String nombre;
 	private double precio;
 	private String imgName;
 	
-	public Producto(String categoria, String nombre, double precio, String imgName) {
+	public Producto(int idProducto, String categoria, String nombre, double precio, String imgName) {
 		
+		this.idProducto = idProducto;
 		this.categoria = categoria;
 		this.nombre = nombre;
 		this.precio = precio;
@@ -25,7 +25,7 @@ public class Producto {
 	}
 	
 	public String toString() {
-		return "Categoria: " + categoria + " Nombre: " + nombre + " " + " Precio:" + precio + " ImgName: " + imgName;
+		return "ID Producto: " + idProducto + "Categoria: " + categoria + " Nombre: " + nombre + " " + " Precio:" + precio + " ImgName: " + imgName;
 	}
 
 	public String getCategoria() {
@@ -46,6 +46,10 @@ public class Producto {
 
 	public String getImgName() {
 		return imgName;
+	}
+	
+	public int getIdProducto() {
+		return idProducto;
 	}
 	
 	public static void insertProductoDB(Producto producto) throws Exception {

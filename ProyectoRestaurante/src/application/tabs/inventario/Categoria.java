@@ -56,8 +56,6 @@ public class Categoria {
 		
 		setJSONtoProducto(getArrayObjects(json_array));
 		
-		//for(CardItem c : arrayCards) System.out.print(c.toString());
-		
 		conexion.closeConnection();
 		
 	}
@@ -84,10 +82,11 @@ public class Categoria {
 	private static void setJSONtoProducto(JSONObject[] jsonObjects) throws Exception {
 		
 		for(JSONObject j : jsonObjects) {
-
-			Producto p = new Producto(j.getString("CATEGORIA").trim(), j.getString("NOMBRE"), j.getDouble("PRECIO"), j.getString("IMAGEN").trim());
+			
+			Producto p = new Producto(j.getInt("ID_PRODUCTO"), j.getString("CATEGORIA").trim(), j.getString("NOMBRE"), j.getDouble("PRECIO"), j.getString("IMAGEN").trim());
 			
 			arrayProductos.add(p);
+			//System.out.println(p.toString());
 			
 		}
 		
@@ -110,7 +109,7 @@ public class Categoria {
 		}
 		
 		try {
-			categoryCards.add(new CardItem(new Producto("NUEVO", "NUEVO", 0, "addItem.png"), getImageProduct("addItem.png", "")));
+			categoryCards.add(new CardItem(new Producto(-1, "NUEVO", "NUEVO", 0, "addItem.png"), getImageProduct("addItem.png", "")));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -119,7 +118,9 @@ public class Categoria {
 	
 	public Image getImageProduct(String imgName, String cat) throws IOException {
 		
-		File f = new File("src/img/" + cat.toLowerCase() + "/" + imgName);
+		if(imgName.equalsIgnoreCase("noImage.png")) cat = "";
+		
+		File f = new File("src" + File.separator + "img" + File.separator + cat.toLowerCase() + File.separator + imgName);
 		
 		return new Image(f.toURI().toString());
 		

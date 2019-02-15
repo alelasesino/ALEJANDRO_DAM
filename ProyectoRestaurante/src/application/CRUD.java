@@ -1,13 +1,8 @@
 package application;
 
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import application.tabs.pedidos.Producto;
 
 public class CRUD {
@@ -33,6 +28,7 @@ public class CRUD {
 		
 		JSONObject json = new JSONObject();
 		
+		json.put("id_producto", producto.getIdProducto());
 		json.put("categoria", producto.getCategoria());
 		json.put("nombre", producto.getNombre());
 		json.put("precio", producto.getPrecioDouble());

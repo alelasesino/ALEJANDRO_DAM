@@ -22,11 +22,13 @@ import javafx.stage.FileChooser.ExtensionFilter;
 public class ImageControl {
 	
 	private FileChooser fileChooser = new FileChooser();
+	private String imgName;
 	private File file;
 	private String categoria;
 	
 	public ImageControl(EnumCategory categoria) {
 		
+		this.imgName = "noImage.png";
 		this.categoria = categoria.name();
 		
 		addFilters();
@@ -102,6 +104,8 @@ public class ImageControl {
 		
 		if(file == null) return null;//new Image("noImage.png");
 		
+		imgName = file.getName();
+		
 		FileInputStream input = new FileInputStream(file);
 		
 		return new Image(input);
@@ -110,6 +114,10 @@ public class ImageControl {
 	
 	public File getFile() {
 		return file;
+	}
+	
+	public String getImgName() {
+		return imgName;
 	}
 
 }

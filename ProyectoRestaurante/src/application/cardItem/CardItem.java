@@ -32,6 +32,8 @@ public class CardItem {
 		
 		try {tarjeta = FXMLLoader.load(getClass().getResource("/fxml/CardItem.fxml")); } catch (IOException e) {}
 		
+		ControlCardItem.srcControl.producto = producto;
+		
 		lblPrecio = ControlCardItem.srcControl.lblPrecio;
 		panePrecio = ControlCardItem.srcControl.panePrecio;
 		lblProducto = ControlCardItem.srcControl.lblProducto;
@@ -42,6 +44,7 @@ public class CardItem {
 	public void addCardItem(){
 	  
 		Inventario.addCard(this);
+		
 		setValuesCard();
 		addCardItemVisible();
 	 

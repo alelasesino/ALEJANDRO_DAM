@@ -9,6 +9,8 @@ public class CategoryEvent implements EventHandler<Event>{
 
 	private String id;
 	
+	public static Categoria c;
+	
 	private static String state = "comida";
 	
 	public CategoryEvent(String id) {
@@ -22,7 +24,7 @@ public class CategoryEvent implements EventHandler<Event>{
 			
 			Inventario.clearInventario();
 			
-			Categoria c = new Categoria(id);
+			c = new Categoria(id);
 			
 			c.addAllCategoryCards();
 			

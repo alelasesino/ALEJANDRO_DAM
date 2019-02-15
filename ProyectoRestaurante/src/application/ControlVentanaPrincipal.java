@@ -3,12 +3,11 @@ package application;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javax.swing.JOptionPane;
-
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXTabPane;
+import application.cardItem.ControlCardItem;
 import application.tabs.inventario.CategoryEvent;
 import application.tabs.inventario.ImageControl;
 import application.tabs.inventario.Inventario;
@@ -26,6 +25,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 
 public class ControlVentanaPrincipal implements Initializable {
 
@@ -60,6 +60,9 @@ public class ControlVentanaPrincipal implements Initializable {
     
     @FXML
     public TextField textNombre, textPrecio;
+    
+    @FXML
+    public VBox btContainer;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -90,7 +93,7 @@ public class ControlVentanaPrincipal implements Initializable {
 				
 				Image img = imageControl.getImagen();
 				
-				if( img == null) {
+				if(img == null) {
 					
 					if(btAdd.getText().equals("AÑADIR")) imgProducto.setImage(new Image("noImage.png"));
 					
@@ -106,27 +109,39 @@ public class ControlVentanaPrincipal implements Initializable {
 		
 		btAdd.setOnMouseClicked(event->{
 			
-			Producto producto = new Producto(lblCategoria.getText().substring(0, lblCategoria.getText().length()-1),
-											 textNombre.getText().toUpperCase(), 
-											 Double.parseDouble(textPrecio.getText().replace(",", ".").replace("€", "")), 
-											 imageControl.getFile().getName());
+			new Thread(new Runnable() {
+				public void run() {
+					
+					Producto producto = new Producto(ControlCardItem.idProductSelected, lblCategoria.getText().substring(0, lblCategoria.getText().length()-1),
+							 textNombre.getText().toUpperCase(), 
+							 Double.parseDouble(textPrecio.getText().replace(",", ".").replace("€", "")), 
+							 imageControl.getImgName());
+
+					if(btAdd.getText().equals("ACTUALIZAR")) {
+
+						new CRUD(producto, EnumPHP.UPDATE_PRODUCT); //TODO CAMBIAR ENUM PHP A ACTUALIZAR.PHP
+
+					} else {
+
+						new CRUD(producto, EnumPHP.INSERT_PRODUCT);
+
+					}
+					
+				}
+			}).start();
 			
-			if(btAdd.getText().equals("ACTUALIZAR")) {
-				
-				new CRUD(producto, EnumPHP.UPDATE_PRODUCT); //TODO CAMBIAR ENUM PHP A ACTUALIZAR.PHP
-				
-			}else {
-				
-				new CRUD(producto, EnumPHP.INSERT_PRODUCT);
-				
-			}
+			/*try {
+				imageControl.copyImgToSource();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}*/
 			
 		});
 		
 		btEliminar.setOnMouseClicked(event->{
 			
 			JOptionPane.showMessageDialog(null, "CUIDADO", "ALERTA", JOptionPane.WARNING_MESSAGE);
-			
+					
 		});
 		
 		//cargarItems = new CargarItems();
