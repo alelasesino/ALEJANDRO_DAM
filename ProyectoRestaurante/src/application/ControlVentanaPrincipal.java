@@ -3,6 +3,9 @@ package application;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javax.swing.JOptionPane;
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXTabPane;
@@ -19,6 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -26,7 +30,7 @@ import javafx.scene.layout.GridPane;
 public class ControlVentanaPrincipal implements Initializable {
 
 	public static ControlVentanaPrincipal srcControl;
-
+	
     @FXML
     public GridPane gridInventario;
     
@@ -75,20 +79,53 @@ public class ControlVentanaPrincipal implements Initializable {
 		cat_Refrescos.setOnMouseClicked(new CategoryEvent("refresco"));
 		cat_Helados.setOnMouseClicked(new CategoryEvent("helado"));
 		
+		EnumCategory c = Enum.valueOf(EnumCategory.class, lblCategoria.getText().substring(0, lblCategoria.getText().length()-1));	
+		ImageControl imageControl = new ImageControl(c);
+		
 		imgProducto.setOnMouseClicked(event-> {
-			
-			EnumCategory c = Enum.valueOf(EnumCategory.class, lblCategoria.getText().substring(0, lblCategoria.getText().length()-1));	
-			ImageControl imageControl = new ImageControl(c);
 			
 			try {
 				
-				imgProducto.setImage(imageControl.getImagen());
+				imageControl.setRequestFile();
+				
+				Image img = imageControl.getImagen();
+				
+				if( img == null) {
+					
+					if(btAdd.getText().equals("AÑADIR")) imgProducto.setImage(new Image("noImage.png"));
+					
+				} else	imgProducto.setImage(img);
 				
 			}catch(FileNotFoundException e) {
 				
 				System.err.println("IMAGEN NO ENCONTRADA");
 				
 			}
+			
+		});
+		
+		btAdd.setOnMouseClicked(event->{
+			
+			Producto producto = new Producto(lblCategoria.getText().substring(0, lblCategoria.getText().length()-1),
+											 textNombre.getText().toUpperCase(), 
+											 Double.parseDouble(textPrecio.getText().replace(",", ".").replace("€", "")), 
+											 imageControl.getFile().getName());
+			
+			if(btAdd.getText().equals("ACTUALIZAR")) {
+				
+				new CRUD(producto, EnumPHP.UPDATE_PRODUCT); //TODO CAMBIAR ENUM PHP A ACTUALIZAR.PHP
+				
+			}else {
+				
+				new CRUD(producto, EnumPHP.INSERT_PRODUCT);
+				
+			}
+			
+		});
+		
+		btEliminar.setOnMouseClicked(event->{
+			
+			JOptionPane.showMessageDialog(null, "CUIDADO", "ALERTA", JOptionPane.WARNING_MESSAGE);
 			
 		});
 		

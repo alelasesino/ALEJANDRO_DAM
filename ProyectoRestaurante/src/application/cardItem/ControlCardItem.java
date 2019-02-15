@@ -13,44 +13,50 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
-public class ControlCardItem implements Initializable, EventHandler<Event>{
+public class ControlCardItem implements Initializable, EventHandler<Event> {
 
 	public static ControlCardItem srcControl;
-	
-    @FXML
-    public Label lblPrecio, lblProducto;
-    
-    @FXML
-    public ImageView imgProducto;
-    
-    @FXML
-    private JFXButton btProducto;
-    
-    @FXML
-    public AnchorPane panePrecio;
-    
+
+	@FXML
+	public Label lblPrecio, lblProducto;
+
+	@FXML
+	public ImageView imgProducto;
+
+	@FXML
+	private JFXButton btProducto;
+
+	@FXML
+	public AnchorPane panePrecio;
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+
 		srcControl = this;
-		
+
 		btProducto.setOnMouseClicked(this);
-		
+
 	}
 
 	@Override
 	public void handle(Event e) {
-		
-		if(ControlVentanaPrincipal.srcControl.lblSeleccion.isVisible()) setVisibleAll(true);
-		
+
+		if (ControlVentanaPrincipal.srcControl.lblSeleccion.isVisible())
+			setVisibleAll(true);
+
 		ControlVentanaPrincipal.srcControl.imgProducto.setImage(imgProducto.getImage());
 		ControlVentanaPrincipal.srcControl.textNombre.setText(lblProducto.getText());
 		ControlVentanaPrincipal.srcControl.textPrecio.setText(lblPrecio.getText());
-		
+
+		if (lblProducto.getText().equals("NUEVO"))
+			ControlVentanaPrincipal.srcControl.btAdd.setText("AÑADIR");
+		else
+			ControlVentanaPrincipal.srcControl.btAdd.setText("ACTUALIZAR");
+
 	}
-	
+
 	public static void setVisibleAll(boolean visible) {
-		
+
 		ControlVentanaPrincipal.srcControl.lblSeleccion.setVisible(!visible);
 		ControlVentanaPrincipal.srcControl.panelProducto.setVisible(visible);
 		ControlVentanaPrincipal.srcControl.imgProducto.setVisible(visible);
@@ -59,7 +65,7 @@ public class ControlCardItem implements Initializable, EventHandler<Event>{
 		ControlVentanaPrincipal.srcControl.textPrecio.setVisible(visible);
 		ControlVentanaPrincipal.srcControl.btAdd.setVisible(visible);
 		ControlVentanaPrincipal.srcControl.btEliminar.setVisible(visible);
-		
+
 	}
-	
+
 }

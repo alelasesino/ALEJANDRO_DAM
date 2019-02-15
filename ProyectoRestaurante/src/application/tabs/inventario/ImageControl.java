@@ -31,8 +31,6 @@ public class ImageControl {
 		
 		addFilters();
 		
-		file = getFile();
-		
 		/*try {
 			copyImgToSource();
 		} catch (Exception e) {
@@ -58,8 +56,8 @@ public class ImageControl {
 		
 	}
 	
-	private File getFile() {
-		return fileChooser.showOpenDialog(Main.primaryStage);
+	public void setRequestFile() {
+		file = fileChooser.showOpenDialog(Main.primaryStage);
 	}
 
 	private int[] getBytesFiles() throws Exception {
@@ -102,12 +100,16 @@ public class ImageControl {
 	
 	public Image getImagen() throws FileNotFoundException {
 		
-		if(file == null) return new Image("noImage.png");
+		if(file == null) return null;//new Image("noImage.png");
 		
 		FileInputStream input = new FileInputStream(file);
 		
 		return new Image(input);
 		
+	}
+	
+	public File getFile() {
+		return file;
 	}
 
 }

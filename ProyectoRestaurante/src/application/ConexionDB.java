@@ -81,7 +81,7 @@ public class ConexionDB {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(conexion.getInputStream()));
 			
 			JSONObject json = new JSONObject(reader.readLine().toString());
-		
+			
 			if(json.get("estado").toString().equals("1")) 
 				return "LA OPERACIÓN SE REALIZÓ CORRECTAMENTE";
 			else

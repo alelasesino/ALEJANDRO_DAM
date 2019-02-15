@@ -39,6 +39,10 @@ public class Producto {
 	public String getPrecio() {
 		return new DecimalFormat("##,##0.00 €").format(precio);
 	}
+	
+	public double getPrecioDouble() {
+		return precio;
+	}
 
 	public String getImgName() {
 		return imgName;
@@ -46,7 +50,7 @@ public class Producto {
 	
 	public static void insertProductoDB(Producto producto) throws Exception {
 		
-		ConexionDB conexion = new ConexionDB(new URL(ConexionDB.LOCAL_URL + EnumPHP.INSERT_PRODUCTO.getPHP()));
+		ConexionDB conexion = new ConexionDB(new URL(ConexionDB.LOCAL_URL + EnumPHP.INSERT_PRODUCT.getPHP()));
 		
 	}
 	
