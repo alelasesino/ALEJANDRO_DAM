@@ -13,9 +13,13 @@ import application.cardItem.CardItem;
 import application.tabs.pedidos.Producto;
 import javafx.scene.image.Image;
 
+/**
+ * @author Alejandro Pérez Álvarez
+ *
+ */
 public class Categoria {
 
-	private static ArrayList<Producto> arrayProductos;
+	public static ArrayList<Producto> arrayProductos;
 	
 	private ArrayList<CardItem> categoryCards = new ArrayList<>();
 	
@@ -36,6 +40,9 @@ public class Categoria {
 		
 	}
 	
+	/**
+	 * Este método añade todas las tarjetas de una categoria al inventario
+	 */
 	public void addAllCategoryCards() {
 		
 		for(CardItem c : categoryCards) c.addCardItem();
@@ -48,7 +55,7 @@ public class Categoria {
 	 */
 	private static void initArrayCards() throws Exception {
 		
-		arrayProductos = new ArrayList<>();
+		if(arrayProductos == null) arrayProductos = new ArrayList<>();
 		
 		ConexionDB conexion = new ConexionDB(new URL(ConexionDB.LOCAL_URL + EnumPHP.GET_ALL_PRODUCTS.getPHP()));
 		
@@ -92,6 +99,10 @@ public class Categoria {
 		
 	}
 	
+	/**
+	 * Este método rellena el arrayList de las tajetas de las categorias con los
+	 * datos del arrayList de todos los productos
+	 */
 	private void fillListProductsCategory() {
 		
 		for(Producto p : arrayProductos) {
@@ -116,13 +127,42 @@ public class Categoria {
 		
 	}
 	
+	/**
+	 * Este método obtiene una imagen de los productos segun su
+	 * categoria y nombre de imagen
+	 * @param imgName Nombre de la imagen
+	 * @param cat Categoria a la que pertenece la imagen
+	 * @return Devuelve un objecto Image con la imagen
+	 * @throws IOException En caso de que no se encuentre la imagen
+	 */
 	public Image getImageProduct(String imgName, String cat) throws IOException {
 		
 		if(imgName.equalsIgnoreCase("noImage.png")) cat = "";
 		
+		//File f = new File("src" + File.separator + "img" + File.separator + cat.toLowerCase() + File.separator + imgName);
 		File f = new File("src" + File.separator + "img" + File.separator + cat.toLowerCase() + File.separator + imgName);
 		
-		return new Image(f.toURI().toString());
+		Image i = new Image(f.toURI().toString());
+		
+		if(i.isError()) 
+			return new Image(new File("src" + File.separator + "img" + File.separator + "noImage.png").toURI().toString());
+		
+		return i;
+		
+	}
+	
+	/**
+	 * Este método actualiza todos los datos de los productos con la
+	 * de la base de datos
+	 */
+	public void refreshProductos() {
+		
+		arrayProductos.clear();
+		categoryCards.clear();
+		
+		try { initArrayCards(); } catch (Exception e) {}
+		
+		fillListProductsCategory();
 		
 	}
 

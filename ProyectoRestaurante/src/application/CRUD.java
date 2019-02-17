@@ -5,6 +5,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import application.tabs.pedidos.Producto;
 
+/**
+ * Esta clase se encarga de insertar, actualizar y eliminar productos de la base de datos
+ * @author Alejandro Pérez Álvarez
+ *
+ */
 public class CRUD {
 	
 	private Producto producto;
@@ -24,6 +29,11 @@ public class CRUD {
 		
 	}
 	
+	/**
+	 * Crea el JSON con toda la informacion de la operacion al servidor
+	 * @return
+	 * @throws JSONException
+	 */
 	private JSONObject createJSON() throws JSONException {
 		
 		JSONObject json = new JSONObject();

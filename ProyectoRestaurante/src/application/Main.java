@@ -1,6 +1,7 @@
 package application;
 
 import application.tabs.inventario.Categoria;
+import application.tabs.inventario.CategoryEvent;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -11,8 +12,6 @@ public class Main extends Application {
 	
 	public static Scene escena;
 	public static Stage primaryStage;
-	
-	public Categoria c;
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -26,7 +25,7 @@ public class Main extends Application {
 				@Override
 				public void run() {
 
-						c = new Categoria("comida");
+						CategoryEvent.category = new Categoria("comida");
 	
 				}
 			}).start();
@@ -40,7 +39,7 @@ public class Main extends Application {
 			
 			setPrimaryStage(primaryStage);
 			
-			c.addAllCategoryCards();
+			CategoryEvent.category.addAllCategoryCards();
 			
 		} catch(Exception e) {
 			e.printStackTrace();

@@ -1,10 +1,6 @@
 package application.tabs.pedidos;
 
-import java.net.URL;
 import java.text.DecimalFormat;
-
-import application.ConexionDB;
-import application.EnumPHP;
 
 public class Producto {
 
@@ -25,7 +21,7 @@ public class Producto {
 	}
 	
 	public String toString() {
-		return "ID Producto: " + idProducto + "Categoria: " + categoria + " Nombre: " + nombre + " " + " Precio:" + precio + " ImgName: " + imgName;
+		return "ID Producto: " + idProducto + " Categoria: " + categoria + " Nombre: " + nombre + " " + " Precio:" + precio + " ImgName: " + imgName;
 	}
 
 	public String getCategoria() {
@@ -50,12 +46,6 @@ public class Producto {
 	
 	public int getIdProducto() {
 		return idProducto;
-	}
-	
-	public static void insertProductoDB(Producto producto) throws Exception {
-		
-		ConexionDB conexion = new ConexionDB(new URL(ConexionDB.LOCAL_URL + EnumPHP.INSERT_PRODUCT.getPHP()));
-		
 	}
 	
 }

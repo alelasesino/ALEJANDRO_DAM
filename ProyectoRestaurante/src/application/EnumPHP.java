@@ -4,7 +4,7 @@ public enum EnumPHP {
 
 	GET_CATEGORIAS("getAllCategory.php"), GET_ALL_PRODUCTS("getAllProducts.php"), INSERT_PRODUCT("insertProducto.php"),
 
-	UPDATE_PRODUCT("updateProducto.php");
+	UPDATE_PRODUCT("updateProducto.php"), REMOVE_PRODUCT("eliminarProducto.php");
 
 	private String PHP_File;
 

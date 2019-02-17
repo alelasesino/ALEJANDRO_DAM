@@ -1,9 +1,10 @@
 package application;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javax.swing.JOptionPane;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXTabPane;
@@ -12,8 +13,11 @@ import application.tabs.inventario.CategoryEvent;
 import application.tabs.inventario.ImageControl;
 import application.tabs.inventario.Inventario;
 import application.tabs.pedidos.Producto;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.CacheHint;
@@ -23,6 +27,8 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -64,6 +70,10 @@ public class ControlVentanaPrincipal implements Initializable {
     @FXML
     public VBox btContainer;
 
+    public ImageControl imageControl;
+    
+    public Producto producto;
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -83,66 +93,15 @@ public class ControlVentanaPrincipal implements Initializable {
 		cat_Helados.setOnMouseClicked(new CategoryEvent("helado"));
 		
 		EnumCategory c = Enum.valueOf(EnumCategory.class, lblCategoria.getText().substring(0, lblCategoria.getText().length()-1));	
-		ImageControl imageControl = new ImageControl(c);
+		imageControl = new ImageControl(c);
 		
-		imgProducto.setOnMouseClicked(event-> {
-			
-			try {
-				
-				imageControl.setRequestFile();
-				
-				Image img = imageControl.getImagen();
-				
-				if(img == null) {
-					
-					if(btAdd.getText().equals("AÑADIR")) imgProducto.setImage(new Image("noImage.png"));
-					
-				} else	imgProducto.setImage(img);
-				
-			}catch(FileNotFoundException e) {
-				
-				System.err.println("IMAGEN NO ENCONTRADA");
-				
-			}
-			
-		});
+		imgProducto.setOnMouseClicked(event-> btImgProductoEvent());
 		
-		btAdd.setOnMouseClicked(event->{
-			
-			new Thread(new Runnable() {
-				public void run() {
-					
-					Producto producto = new Producto(ControlCardItem.idProductSelected, lblCategoria.getText().substring(0, lblCategoria.getText().length()-1),
-							 textNombre.getText().toUpperCase(), 
-							 Double.parseDouble(textPrecio.getText().replace(",", ".").replace("€", "")), 
-							 imageControl.getImgName());
-
-					if(btAdd.getText().equals("ACTUALIZAR")) {
-
-						new CRUD(producto, EnumPHP.UPDATE_PRODUCT); //TODO CAMBIAR ENUM PHP A ACTUALIZAR.PHP
-
-					} else {
-
-						new CRUD(producto, EnumPHP.INSERT_PRODUCT);
-
-					}
-					
-				}
-			}).start();
-			
-			/*try {
-				imageControl.copyImgToSource();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}*/
-			
-		});
+		btAdd.setOnMouseClicked(event-> btAddEvent());
 		
-		btEliminar.setOnMouseClicked(event->{
-			
-			JOptionPane.showMessageDialog(null, "CUIDADO", "ALERTA", JOptionPane.WARNING_MESSAGE);
-					
-		});
+		btEliminar.setOnMouseClicked(event-> btRemoveEvent());
+		
+		textPrecio.setOnKeyPressed(new keyPressed());
 		
 		//cargarItems = new CargarItems();
 		
@@ -165,6 +124,110 @@ public class ControlVentanaPrincipal implements Initializable {
 		
 	}
 
+	/**
+	 * Método del evento click de la imagen header del producto seleccionado
+	 */
+	private void btImgProductoEvent() {
+		
+		try {
+			
+			imageControl.setRequestFile();
+			
+			Image img = imageControl.getImagen();
+			
+			if(img == null) {
+				
+				if(btAdd.getText().equals("AÑADIR")) imgProducto.setImage(new Image(new FileInputStream(new File("src/img/noImage.png"))));
+				
+			} else	imgProducto.setImage(img);
+			
+		}catch(FileNotFoundException e) {
+			
+			System.err.println("IMAGEN NO ENCONTRADA");
+			
+		}
+		
+	}
+
+	/**
+	 * Método del evento click del boton eliminar
+	 */
+	private void btRemoveEvent() {
+		
+		class BackendThread extends Thread{
+			
+			public void run() {
+				
+				new CRUD(new Producto(ControlCardItem.idProductSelected, "", "", 0, ""), EnumPHP.REMOVE_PRODUCT);
+				
+				imageControl.removeFile(); //TODO COMENTADO POR SEGURIDAD*/
+				CategoryEvent.category.refreshProductos();
+				
+			}
+			
+		}
+		
+		BackendThread backend = new BackendThread();
+		backend.start();
+		
+		try { backend.join(); } catch (InterruptedException e) {}
+		
+		refreshInventario();
+		
+	}
+
+	/**
+	 * Método del evento click del boton añadir/actualizar
+	 */
+	private void btAddEvent() {
+		
+		class BackendThread extends Thread{
+			
+			public void run() {
+				
+				producto = new Producto(ControlCardItem.idProductSelected, lblCategoria.getText().substring(0, lblCategoria.getText().length()-1),
+						 textNombre.getText().toUpperCase(), 
+						 Double.parseDouble(textPrecio.getText().replace(",", ".").replace("€", "")), 
+						 imageControl.getImgName());
+								
+				if(btAdd.getText().equals("ACTUALIZAR")) {
+					
+					new CRUD(producto, EnumPHP.UPDATE_PRODUCT);
+					
+				} else {
+					
+					new CRUD(producto, EnumPHP.INSERT_PRODUCT);
+					
+				}
+				
+				try { imageControl.copyImgToSource(); } catch (Exception e) {}
+				
+				CategoryEvent.category.refreshProductos();
+				
+			}
+			
+		}
+		
+		BackendThread backend = new BackendThread();
+		backend.start();
+		
+		try { backend.join(); } catch (InterruptedException e) {}
+		
+		refreshInventario();
+		
+	}
+
+	/**
+	 * Este método manda a actualizar los productos del inventario
+	 */
+	private void refreshInventario() {
+		
+		Inventario.clearInventario();
+		CategoryEvent.category.addAllCategoryCards();
+		ControlCardItem.setHeaderVisible(false);
+		
+	}
+
 	public ObservableList<Producto> getDatosProductos() {
 
 		ObservableList<Producto> lista = FXCollections.observableArrayList();
@@ -177,6 +240,29 @@ public class ControlVentanaPrincipal implements Initializable {
 
 		return lista;
 
+	}
+	
+}
+
+class keyPressed implements EventHandler<KeyEvent> {
+	
+	@Override
+	public void handle(KeyEvent e) {
+		
+		boolean hasPoint = ControlVentanaPrincipal.srcControl.textPrecio.getText().contains(".");
+		
+		if(!(e.getCode() == KeyCode.BACK_SPACE)) {
+			
+			if(!Character.isDigit(e.getText().charAt(0))) {
+				
+				ControlVentanaPrincipal.srcControl.textPrecio.setText(ControlVentanaPrincipal.srcControl.textPrecio.getText());
+				System.out.println(ControlVentanaPrincipal.srcControl.textPrecio.getText());
+				e.consume();
+				System.out.println(e.isConsumed());
+			}
+			
+		}
+		
 	}
 	
 }

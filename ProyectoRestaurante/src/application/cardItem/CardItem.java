@@ -41,6 +41,9 @@ public class CardItem {
 		
 	}
 	
+	/**
+	 * Este método manda a añadir la tarjeta al inventario y establecer los valores a la tarjeta
+	 */
 	public void addCardItem(){
 	  
 		Inventario.addCard(this);
@@ -51,12 +54,10 @@ public class CardItem {
 	}
 	 
 
-	public String toString() {
-		return "CATEGORIA: " + producto.getCategoria() + " NOMBRE: " + producto.getNombre() + " PRECIO: "
-				+ producto.getPrecio() + " IMAGEN: " + producto.getImgName();
-	}
-
-	public void setValuesCard() {
+	/**
+	 * Este método establece los valores de la tarjeta
+	 */
+	private void setValuesCard() {
 		
 		lblPrecio.setText(producto.getPrecio());
 		lblProducto.setText(producto.getNombre());
@@ -65,6 +66,10 @@ public class CardItem {
 
 	}
 
+	/**
+	 * Este método comprueba si es la ultima tarjeta de añadir tarjeta y desabilita los valores
+	 * de la tarjeta
+	 */
 	private void addCardItemVisible() {
 		
 		if(isAddCard()){
@@ -91,6 +96,11 @@ public class CardItem {
 
 	public Parent getTarjeta() {
 		return tarjeta;
+	}
+
+	public String toString() {
+		return "CATEGORIA: " + producto.getCategoria() + " NOMBRE: " + producto.getNombre() + " PRECIO: "
+				+ producto.getPrecio() + " IMAGEN: " + producto.getImgName();
 	}
 
 }

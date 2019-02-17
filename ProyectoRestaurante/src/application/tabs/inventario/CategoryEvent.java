@@ -9,31 +9,34 @@ public class CategoryEvent implements EventHandler<Event>{
 
 	private String id;
 	
-	public static Categoria c;
+	public static Categoria category;
 	
-	private static String state = "comida";
+	private static String currentCategory = "comida";
 	
 	public CategoryEvent(String id) {
 		this.id = id;
+		
 	}
 
 	@Override
 	public void handle(Event e) {
 		
-		if(!state.equals(id)) {
+		if(!currentCategory.equals(id)) {
 			
 			Inventario.clearInventario();
 			
-			c = new Categoria(id);
+			category = new Categoria(id);
 			
-			c.addAllCategoryCards();
+			category.addAllCategoryCards();
 			
-			ControlCardItem.setVisibleAll(false);			
+			ControlCardItem.setHeaderVisible(false);			
+			
+			ControlVentanaPrincipal.srcControl.imageControl.setCategoria(id.toLowerCase());
 			
 		}
 		
-		state = id;
-		ControlVentanaPrincipal.srcControl.lblCategoria.setText(state.toUpperCase() + "S");
+		currentCategory = id;
+		ControlVentanaPrincipal.srcControl.lblCategoria.setText(currentCategory.toUpperCase() + "S");
 		
 	}
 
