@@ -21,6 +21,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import application.tabs.inventario.PrecioTextValidation?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="708.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="application.ControlVentanaPrincipal">
    <children>
@@ -267,11 +268,11 @@
                                     <Insets left="16.0" right="16.0" />
                                  </padding>
                               </TextField>
-                              <TextField fx:id="textPrecio" alignment="CENTER" layoutX="202.0" layoutY="96.0" minHeight="25.0" minWidth="92.0" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: #F3F3EB; -fx-background-radius: 50;" visible="false">
+                              <PrecioTextValidation fx:id="textPrecio" alignment="CENTER" layoutX="202.0" layoutY="96.0" minHeight="25.0" minWidth="92.0" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: #F3F3EB; -fx-background-radius: 50;" visible="false">
                                  <font>
                                     <Font size="13.0" />
                                  </font>
-                              </TextField>
+                              </PrecioTextValidation>
                               <AnchorPane fx:id="panelProducto" layoutX="65.0" layoutY="6.0" prefHeight="124.0" prefWidth="110.0" style="-fx-border-color: #BFBFBF;" visible="false">
                                  <children>
                                     <ImageView fx:id="imgProducto" fitHeight="120.0" fitWidth="114.0" layoutX="2.0" layoutY="2.0" nodeOrientation="INHERIT" pickOnBounds="true" />

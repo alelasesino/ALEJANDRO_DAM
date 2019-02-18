@@ -133,6 +133,8 @@ public class ImageControl {
 	 */
 	public boolean removeFile() {
 		
+		if(imgName.equals("noImage.png")) return false;
+		
 		return new File("src" + File.separator + "img"  + File.separator + categoria.toLowerCase() + File.separator + imgName).delete();
 		
 	}

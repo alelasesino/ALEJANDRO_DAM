@@ -16,6 +16,8 @@ import javafx.scene.layout.AnchorPane;
 public class ControlCardItem implements Initializable, EventHandler<Event> {
 
 	public static ControlCardItem srcControl;
+	
+	public static ControlVentanaPrincipal control = ControlVentanaPrincipal.srcControl;
 
 	public static int idProductSelected;
 	
@@ -47,33 +49,33 @@ public class ControlCardItem implements Initializable, EventHandler<Event> {
 		
 		idProductSelected = producto.getIdProducto();
 		
-		ControlVentanaPrincipal.srcControl.imageControl.setImgName(producto.getImgName());
+		control.imageControl.setImgName(producto.getImgName());
 		
-		if (ControlVentanaPrincipal.srcControl.lblSeleccion.isVisible())
+		if (control.lblSeleccion.isVisible())
 			setHeaderVisible(true);
 		
-		ControlVentanaPrincipal.srcControl.imgProducto.setImage(imgProducto.getImage());
+		control.imgProducto.setImage(imgProducto.getImage());
 		
 		if(!lblProducto.getText().equals("NUEVO")) {
 			
-			ControlVentanaPrincipal.srcControl.textNombre.setText(lblProducto.getText());
-			ControlVentanaPrincipal.srcControl.textPrecio.setText(lblPrecio.getText());
+			control.textNombre.setText(lblProducto.getText());
+			control.textPrecio.setText(lblPrecio.getText());
 			
-			ControlVentanaPrincipal.srcControl.btAdd.setText("ACTUALIZAR");
-			ControlVentanaPrincipal.srcControl.btEliminar.setVisible(true);
-			ControlVentanaPrincipal.srcControl.btContainer.setTranslateY(-2);
+			control.btAdd.setText("ACTUALIZAR");
+			control.btEliminar.setVisible(true);
+			control.btContainer.setTranslateY(-2);
 			
 		} else {
 			
-			ControlVentanaPrincipal.srcControl.textNombre.setText("");
-			ControlVentanaPrincipal.srcControl.textNombre.setPromptText("NUEVO PRODUCTO");
+			control.textNombre.setText("");
+			control.textNombre.setPromptText("NUEVO PRODUCTO");
 			
-			ControlVentanaPrincipal.srcControl.textPrecio.setText("");
-			ControlVentanaPrincipal.srcControl.textPrecio.setPromptText("0,00 €");
+			control.textPrecio.setText("");
+			control.textPrecio.setPromptText("0,00 €");
 			
-			ControlVentanaPrincipal.srcControl.btAdd.setText("AÑADIR");
-			ControlVentanaPrincipal.srcControl.btEliminar.setVisible(false);
-			ControlVentanaPrincipal.srcControl.btContainer.setTranslateY(16);
+			control.btAdd.setText("AÑADIR");
+			control.btEliminar.setVisible(false);
+			control.btContainer.setTranslateY(16);
 			
 		}
 		
@@ -84,15 +86,15 @@ public class ControlCardItem implements Initializable, EventHandler<Event> {
 	 * @param visible
 	 */
 	public static void setHeaderVisible(boolean visible) {
-
-		ControlVentanaPrincipal.srcControl.lblSeleccion.setVisible(!visible);
-		ControlVentanaPrincipal.srcControl.panelProducto.setVisible(visible);
-		ControlVentanaPrincipal.srcControl.imgProducto.setVisible(visible);
-		ControlVentanaPrincipal.srcControl.lblCategoria.setVisible(visible);
-		ControlVentanaPrincipal.srcControl.textNombre.setVisible(visible);
-		ControlVentanaPrincipal.srcControl.textPrecio.setVisible(visible);
-		ControlVentanaPrincipal.srcControl.btAdd.setVisible(visible);
-		ControlVentanaPrincipal.srcControl.btEliminar.setVisible(visible);
+		
+		control.lblSeleccion.setVisible(!visible);
+		control.panelProducto.setVisible(visible);
+		control.imgProducto.setVisible(visible);
+		control.lblCategoria.setVisible(visible);
+		control.textNombre.setVisible(visible);
+		control.textPrecio.setVisible(visible);
+		control.btAdd.setVisible(visible);
+		control.btEliminar.setVisible(visible);
 
 	}
 
