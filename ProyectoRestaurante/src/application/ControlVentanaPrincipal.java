@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXTabPane;
 import application.cardItem.ControlCardItem;
+import application.tabs.inventario.Categoria;
 import application.tabs.inventario.CategoryEvent;
 import application.tabs.inventario.ImageControl;
 import application.tabs.inventario.Inventario;
@@ -77,6 +78,8 @@ public class ControlVentanaPrincipal implements Initializable {
 
 		srcControl = this;
 
+		initCategoria();
+		
 		tabPrincipal.setCache(true);
 		tabPrincipal.setCacheHint(CacheHint.SPEED);
 
@@ -87,54 +90,12 @@ public class ControlVentanaPrincipal implements Initializable {
 
 		});
 
-		cat_Comidas.setOnMouseClicked(new CategoryEvent("comida"));
-		cat_Refrescos.setOnMouseClicked(new CategoryEvent("refresco"));
-		cat_Helados.setOnMouseClicked(new CategoryEvent("helado"));
-
-		EnumCategory c = Enum.valueOf(EnumCategory.class,
-				lblCategoria.getText().substring(0, lblCategoria.getText().length() - 1));
+		addMouseClickListeners();
+		
+		EnumCategory c = Enum.valueOf(EnumCategory.class, lblCategoria.getText().substring(0, lblCategoria.getText().length() - 1));
 		imageControl = new ImageControl(c);
-
-		imgProducto.setOnMouseClicked(event -> btImgProductoEvent());
-
-		btAdd.setOnMouseClicked(event -> btAddEvent());
-
-		btEliminar.setOnMouseClicked(event -> btRemoveEvent());
-
-		textPrecio.focusedProperty().addListener(new ChangeListener<Boolean>() {
-
-			@Override
-			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-				
-				String text = ControlVentanaPrincipal.srcControl.textPrecio.getText();
-				
-				if(!text.isEmpty()) {
-					
-					try {
-						
-					DecimalFormat formato = new DecimalFormat();
-					Double a = Double.parseDouble(text.replace(",", ".").replace("€", "").replace(".$", ""));
-					
-					if (newValue)
-						formato.applyPattern("0.##");
-					else
-						formato.applyPattern("##,##0.00 €");
-					
-					ControlVentanaPrincipal.srcControl.textPrecio.setText(formato.format(a));						
-						
-					}catch(NumberFormatException e) {
-						ControlVentanaPrincipal.srcControl.textPrecio.setText("");
-					}
-					
-				}
-
-			}
-
-		});
-
-		// cargarItems = new CargarItems();
-
-		// item_progressbar.progressProperty().bind(cargarItems.progressProperty());
+		
+		textPrecio.focusedProperty().addListener(new TextFocusEvent());
 
 		/*
 		 * TableColumn<Producto, String> columNombre = new TableColumn<Producto,
@@ -155,6 +116,47 @@ public class ControlVentanaPrincipal implements Initializable {
 
 	}
 
+	private void addMouseClickListeners() {
+		
+		cat_Comidas.setOnMouseClicked(new CategoryEvent(EnumCategory.COMIDA));
+		cat_Refrescos.setOnMouseClicked(new CategoryEvent(EnumCategory.REFRESCO));
+		cat_Helados.setOnMouseClicked(new CategoryEvent(EnumCategory.HELADO));
+		
+		imgProducto.setOnMouseClicked(event -> btImgProductoEvent());
+		
+		btAdd.setOnMouseClicked(event -> btAddEvent());
+		btEliminar.setOnMouseClicked(event -> btRemoveEvent());
+		
+	}
+	
+	/**
+	 * Inicializa la primera categoria a COMIDAS
+	 */
+	private void initCategoria() {
+		
+		class Backend extends Thread{
+			
+			@Override
+			public void run() {
+				
+				CategoryEvent.category = new Categoria(EnumCategory.COMIDA);
+				
+			}
+			
+		}
+		
+		Backend back = new Backend();
+		back.start();
+		
+		try {
+			back.join();
+		} catch (InterruptedException e) {
+		}
+		
+		CategoryEvent.category.addAllCategoryCards();
+		
+	}
+	
 	/**
 	 * Método del evento click de la imagen header del producto seleccionado
 	 */
@@ -288,26 +290,31 @@ public class ControlVentanaPrincipal implements Initializable {
 
 }
 
-/*
- * class keyPressed implements EventHandler<KeyEvent> {
- * 
- * @Override public void handle(KeyEvent e) {
- * 
- * boolean hasPoint =
- * ControlVentanaPrincipal.srcControl.textPrecio.getText().contains(".");
- * 
- * if(!(e.getCode() == KeyCode.BACK_SPACE)) {
- * 
- * if(!Character.isDigit(e.getText().charAt(0))) {
- * 
- * ControlVentanaPrincipal.srcControl.textPrecio.setText(ControlVentanaPrincipal
- * .srcControl.textPrecio.getText());
- * System.out.println(ControlVentanaPrincipal.srcControl.textPrecio.getText());
- * e.consume(); System.out.println(e.isConsumed()); }
- * 
- * }
- * 
- * }
- * 
- * }
- */
+class TextFocusEvent implements ChangeListener<Boolean>{
+
+	@Override
+	public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+		
+		String text = ControlVentanaPrincipal.srcControl.textPrecio.getText();
+		
+		if(!text.isEmpty()) {
+			
+			try {
+				
+			DecimalFormat formato = new DecimalFormat();
+			Double a = Double.parseDouble(text.replace(",", ".").replace("€", "").replace(".$", ""));
+			
+			if (newValue)
+				formato.applyPattern("0.##");
+			else
+				formato.applyPattern("##,##0.00 €");
+			
+			ControlVentanaPrincipal.srcControl.textPrecio.setText(formato.format(a));						
+				
+			}catch(NumberFormatException e) {
+				ControlVentanaPrincipal.srcControl.textPrecio.setText("");
+			}
+			
+		}
+		
+	}}

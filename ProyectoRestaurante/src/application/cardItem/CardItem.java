@@ -15,12 +15,12 @@ import javafx.scene.layout.AnchorPane;
  *
  */
 public class CardItem {
-	
-    private Label lblPrecio;
-    private AnchorPane panePrecio;
-    private Label lblProducto;
-    private ImageView imgProducto;
-	
+
+	private Label lblPrecio;
+	private AnchorPane panePrecio;
+	private Label lblProducto;
+	private ImageView imgProducto;
+
 	private Producto producto;
 	private Image img;
 	private Parent tarjeta;
@@ -29,36 +29,40 @@ public class CardItem {
 
 		this.producto = producto;
 		this.img = img;
-		
-		try {tarjeta = FXMLLoader.load(getClass().getResource("/fxml/CardItem.fxml")); } catch (IOException e) {}
-		
+
+		try {
+			tarjeta = FXMLLoader.load(getClass().getResource("/fxml/CardItem.fxml"));
+		} catch (IOException e) {
+			System.err.println("NO SE ENCUETRA EL ARCHIVO CardItem.fxml");
+		}
+
 		ControlCardItem.srcControl.producto = producto;
-		
+
 		lblPrecio = ControlCardItem.srcControl.lblPrecio;
 		panePrecio = ControlCardItem.srcControl.panePrecio;
 		lblProducto = ControlCardItem.srcControl.lblProducto;
 		imgProducto = ControlCardItem.srcControl.imgProducto;
-		
+
 	}
-	
+
 	/**
-	 * Este método manda a añadir la tarjeta al inventario y establecer los valores a la tarjeta
+	 * Este método manda a añadir la tarjeta al inventario y establecer los valores
+	 * a la tarjeta
 	 */
-	public void addCardItem(){
-	  
+	public void addCardItem() {
+
 		Inventario.addCard(this);
-		
+
 		setValuesCard();
 		addCardItemVisible();
-	 
+
 	}
-	 
 
 	/**
 	 * Este método establece los valores de la tarjeta
 	 */
 	private void setValuesCard() {
-		
+
 		lblPrecio.setText(producto.getPrecio());
 		lblProducto.setText(producto.getNombre());
 		lblProducto.setVisible(!producto.getCategoria().equalsIgnoreCase("refresco"));
@@ -67,21 +71,21 @@ public class CardItem {
 	}
 
 	/**
-	 * Este método comprueba si es la ultima tarjeta de añadir tarjeta y desabilita los valores
-	 * de la tarjeta
+	 * Este método comprueba si es la ultima tarjeta de añadir tarjeta y desabilita
+	 * los valores de la tarjeta
 	 */
 	private void addCardItemVisible() {
-		
-		if(isAddCard()){
-			
+
+		if (isAddCard()) {
+
 			lblProducto.setVisible(false);
 			lblPrecio.setVisible(false);
 			panePrecio.setVisible(false);
-			
+
 		}
-		
+
 	}
-	
+
 	private boolean isAddCard() {
 		return lblProducto.getText().equals("NUEVO");
 	}
@@ -89,7 +93,7 @@ public class CardItem {
 	public Producto getProducto() {
 		return producto;
 	}
-	
+
 	public Image getImg() {
 		return img;
 	}

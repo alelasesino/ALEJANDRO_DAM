@@ -1,5 +1,6 @@
 package application;
 
+import java.io.IOException;
 import java.net.URL;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,7 +25,12 @@ public class CRUD {
 			conexion.postMethod(createJSON());
 			
 		}catch (Exception e) {
-			e.printStackTrace();
+			
+			if(e instanceof IOException) 
+				System.err.println("ERROR EN LA CONEXIÓN CON LA URL"); 
+			else 
+				System.out.println("ERROR EN EL MÉTODO POST");
+			
 		}
 		
 	}

@@ -1,6 +1,7 @@
 package application.tabs.inventario;
 
 import application.ControlVentanaPrincipal;
+import application.EnumCategory;
 import application.cardItem.ControlCardItem;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -13,8 +14,8 @@ public class CategoryEvent implements EventHandler<Event>{
 	
 	private static String currentCategory = "comida";
 	
-	public CategoryEvent(String id) {
-		this.id = id;
+	public CategoryEvent(EnumCategory cat) {
+		this.id = cat.name();
 		
 	}
 
@@ -24,8 +25,8 @@ public class CategoryEvent implements EventHandler<Event>{
 		if(!currentCategory.equals(id)) {
 			
 			Inventario.clearInventario();
-			
-			category = new Categoria(id);
+						
+			category = new Categoria(Enum.valueOf(EnumCategory.class, id));
 			
 			category.addAllCategoryCards();
 			

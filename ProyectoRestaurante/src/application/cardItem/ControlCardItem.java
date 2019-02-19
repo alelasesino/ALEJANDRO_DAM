@@ -56,6 +56,12 @@ public class ControlCardItem implements Initializable, EventHandler<Event> {
 		
 		control.imgProducto.setImage(imgProducto.getImage());
 		
+		setValuesHeader();
+		
+	}
+
+	private void setValuesHeader() {
+		
 		if(!lblProducto.getText().equals("NUEVO")) {
 			
 			control.textNombre.setText(lblProducto.getText());

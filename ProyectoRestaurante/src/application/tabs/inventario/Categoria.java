@@ -2,12 +2,17 @@ package application.tabs.inventario;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import application.ConexionDB;
+import application.EnumCategory;
 import application.EnumPHP;
 import application.cardItem.CardItem;
 import application.tabs.pedidos.Producto;
@@ -25,16 +30,28 @@ public class Categoria {
 	
 	private String categoria;
 	
-	public Categoria(String categoria) {
+	public Categoria(EnumCategory categoria) {
 		
 		if(arrayProductos == null)
 			try {
 				initArrayCards();
 			} catch (Exception e) {
-				System.err.println("ERROR EN LA CONEXION CON LA BASE DE DATOS");
+				
+				String err = "";
+				
+				if(e instanceof JSONException) err = "SE PRODUJO UN ERROR CON EL ARCHIVO JSON";
+				
+				if(e instanceof MalformedURLException) err = "ERROR EN EL FORMATO DE LA URL";
+				
+				if(e instanceof IOException) err = "ERROR EN LA CONEXION CON LA URL";
+				
+				System.err.println(err);
+				
+				JOptionPane.showMessageDialog(null, err, "SE PRODUJO UN ERROR", JOptionPane.ERROR_MESSAGE);
+				
 			}
 		
-		this.categoria = categoria.toUpperCase();
+		this.categoria = categoria.name();
 		
 		fillListProductsCategory();
 		
@@ -53,7 +70,7 @@ public class Categoria {
 	 * Inicializa el arrayList de tarjetas con los datos de los productos de la base de datos
 	 * @throws Exception
 	 */
-	private static void initArrayCards() throws Exception {
+	private static void initArrayCards() throws  Exception  {
 		
 		if(arrayProductos == null) arrayProductos = new ArrayList<>();
 		
@@ -86,7 +103,7 @@ public class Categoria {
 	 * @param Array JSONObject que tiene los atributos de cada producto
 	 * @throws JSONException
 	 */
-	private static void setJSONtoProducto(JSONObject[] jsonObjects) throws Exception {
+	private static void setJSONtoProducto(JSONObject[] jsonObjects) throws JSONException  {
 		
 		for(JSONObject j : jsonObjects) {
 			
@@ -105,24 +122,22 @@ public class Categoria {
 	 */
 	private void fillListProductsCategory() {
 		
-		for(Producto p : arrayProductos) {
-			
-			if(categoria.equals(p.getCategoria())) {
-				
-				try {
-					categoryCards.add(new CardItem(p, getImageProduct(p.getImgName(), categoria)));
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				
-			} 
-			
-		}
-		
 		try {
+		
+			for(Producto p : arrayProductos) {
+				
+				if(categoria.equals(p.getCategoria())) {
+					
+					categoryCards.add(new CardItem(p, getImageProduct(p.getImgName(), categoria)));
+					
+				} 
+				
+			}
+			
 			categoryCards.add(new CardItem(new Producto(-1, "NUEVO", "NUEVO", 0, "addItem.png"), getImageProduct("addItem.png", "")));
+		
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("NO SE ENCONTRÓ LA IMAGEN DEL PRODUCTO");
 		}
 		
 	}
@@ -139,7 +154,6 @@ public class Categoria {
 		
 		if(imgName.equalsIgnoreCase("noImage.png")) cat = "";
 		
-		//File f = new File("src" + File.separator + "img" + File.separator + cat.toLowerCase() + File.separator + imgName);
 		File f = new File("src" + File.separator + "img" + File.separator + cat.toLowerCase() + File.separator + imgName);
 		
 		Image i = new Image(f.toURI().toString());
@@ -160,7 +174,25 @@ public class Categoria {
 		arrayProductos.clear();
 		categoryCards.clear();
 		
-		try { initArrayCards(); } catch (Exception e) {}
+		try { 
+			
+			initArrayCards(); 
+		
+		} catch (Exception e) {
+			
+			String err = "";
+			
+			if(e instanceof JSONException) err = "SE PRODUJO UN ERROR CON EL ARCHIVO JSON";
+			
+			if(e instanceof MalformedURLException) err = "ERROR EN EL FORMATO DE LA URL";
+			
+			if(e instanceof IOException) err = "ERROR EN LA CONEXION CON LA URL";
+			
+			System.err.println(err);
+			
+			JOptionPane.showMessageDialog(null, err, "SE PRODUJO UN ERROR", JOptionPane.ERROR_MESSAGE);
+			
+		}
 		
 		fillListProductsCategory();
 		
