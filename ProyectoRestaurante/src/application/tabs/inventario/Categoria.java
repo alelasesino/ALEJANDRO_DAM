@@ -24,17 +24,88 @@ import javafx.scene.image.Image;
  */
 public class Categoria {
 	
+	public static ArrayList<Producto> listaProductos;
+	
 	private ArrayList<CardItem> categoryCards = new ArrayList<>();
 	
 	private String categoria;
 	
 	public Categoria(EnumCategory categoria) {
 		
-		
+		if(listaProductos == null)
+			try {
+					
+				initListaProductos();	
+				
+			} catch (Exception e) {
+				
+				String err = "";
+				
+				if(e instanceof JSONException) err = "SE PRODUJO UN ERROR CON EL ARCHIVO JSON";
+				
+				if(e instanceof MalformedURLException) err = "ERROR EN EL FORMATO DE LA URL";
+				
+				if(e instanceof IOException) err = "ERROR EN LA CONEXION CON LA URL";
+				
+				System.err.println(err);
+				
+				JOptionPane.showMessageDialog(null, err, "SE PRODUJO UN ERROR", JOptionPane.ERROR_MESSAGE);
+				
+			}
 		
 		this.categoria = categoria.name();
 		
 		fillListProductsCategory();
+		
+	}
+	
+	/**
+	 * Inicializa el arrayList de productos con los datos de los productos de la base de datos
+	 * @throws Exception
+	 */
+	private static void initListaProductos() throws  Exception  {
+		
+		if(listaProductos == null) listaProductos = new ArrayList<>();
+		
+		ConexionDB conexion = new ConexionDB(new URL(ConexionDB.LOCAL_URL + EnumPHP.GET_ALL_PRODUCTS.getPHP()));
+		
+		JSONArray json_array = new JSONArray(conexion.getJSON().get("productos").toString());
+		
+		setJSONtoProducto(getArrayObjects(json_array));
+		
+		conexion.closeConnection();
+		
+	}
+	
+	/**
+	 * @param ArrayObject JSON con todos los atributos de todos los productos 
+	 * @return Devuelve un array JSONObject que contiene los atributos de cada producto
+	 * @throws JSONException
+	 */
+	private static JSONObject[] getArrayObjects(JSONArray json_array) throws JSONException {
+		
+		JSONObject[] jsonObjects = new JSONObject[json_array.length()];	
+		
+		for(int i = 0; i<json_array.length(); i++) jsonObjects[i] = new JSONObject(json_array.get(i).toString());
+		
+		return jsonObjects;
+		
+	}
+	
+	/** 
+	 * @param Array JSONObject que tiene los atributos de cada producto
+	 * @throws JSONException
+	 */
+	private static void setJSONtoProducto(JSONObject[] jsonObjects) throws JSONException  {
+		
+		for(JSONObject j : jsonObjects) {
+			
+			Producto p = new Producto(j.getInt("ID_PRODUCTO"), j.getString("CATEGORIA").trim(), j.getString("NOMBRE"), j.getDouble("PRECIO"), j.getString("IMAGEN").trim());
+			
+			listaProductos.add(p);
+			//System.out.println(p.toString());
+			
+		}
 		
 	}
 	
@@ -55,7 +126,7 @@ public class Categoria {
 		
 		try {
 		
-			for(Producto p : arrayProductos) {
+			for(Producto p : listaProductos) {
 				
 				if(categoria.equals(p.getCategoria())) {
 					
@@ -102,12 +173,12 @@ public class Categoria {
 	 */
 	public void refreshProductos() {
 		
-		arrayProductos.clear();
+		listaProductos.clear();
 		categoryCards.clear();
 		
 		try { 
 			
-			initArrayCards(); 
+			initListaProductos(); 
 		
 		} catch (Exception e) {
 			
